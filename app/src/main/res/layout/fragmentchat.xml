@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/material_brown_50">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:id="@+id/ll_send"
+        android:elevation="5dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin_small"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:textSize="@dimen/text_medium"
+            android:id="@+id/edt_chat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/type_your_message_here"
+            android:layout_weight="1" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/btn_send"
+            app:elevation="5dp"
+            android:layout_marginRight="@dimen/margin_medium"
+            android:layout_marginLeft="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:src="@drawable/ic_send"
+            app:fabSize="mini" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@id/ll_send"
+
+        android:background="@color/divider"/>
+</LinearLayout>

@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.telephony.TelephonyManager;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by MyPC on 6/28/2016.
@@ -95,11 +97,15 @@ public class CommonUtils {
 //        return 0;
 //    }
 //
-//    public static String getCurrentTime() {
-//        long date = System.currentTimeMillis();
-//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-//        return sdf.format(date);
-//    }
+    public static String getCurrentTime() {
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd HH:mm");
+        return sdf.format(date);
+    }
+    public static String getImei(Context context) {
+        TelephonyManager telephonyManager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getDeviceId();
+    }
 ////    public static void sendViaFacebook(final Activity context, final String msg, final SimpleFacebook mSimpleFacebook) {
 ////        // final AlertDialog dialog = AlertDialogCustom.getInstance(context).showDialogGenerateLink(context);
 ////        final OnPublishListener onPublishListener = new OnPublishListener() {
