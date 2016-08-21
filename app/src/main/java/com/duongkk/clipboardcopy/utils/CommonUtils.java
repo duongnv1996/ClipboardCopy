@@ -3,9 +3,12 @@ package com.duongkk.clipboardcopy.utils;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
+
+import com.duongkk.clipboardcopy.R;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -99,7 +102,12 @@ public class CommonUtils {
 //
     public static String getCurrentTime() {
         long date = System.currentTimeMillis();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM HH:mm");
+        return sdf.format(date);
+    }
+    public static String getCurrentTimeByFormat(String format) {
+        long date = System.currentTimeMillis();
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(date);
     }
     public static String getImei(Context context) {
@@ -279,15 +287,14 @@ public class CommonUtils {
 //        return bitmap;
 //    }
 //
-//    public static void shareSimpleText(String msg, Context context) {
-//        Intent intent = new Intent();
-//        intent.setAction(Intent.ACTION_SEND);
-//        intent.setType("text/plain");
-//
-//        intent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
-//        intent.putExtra(Intent.EXTRA_TEXT, msg);
-//        context.startActivity(Intent.createChooser(intent, "Send via"));
-//    }
+    public static void shareSimpleText(String msg, Context context) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
+        intent.putExtra(Intent.EXTRA_TEXT, msg);
+        context.startActivity(Intent.createChooser(intent, "Send via"));
+    }
 ////    public static Bitmap writeTextOnDrawable(String text, Context context) {
 ////        String content = text;
 ////        String content2 = null;

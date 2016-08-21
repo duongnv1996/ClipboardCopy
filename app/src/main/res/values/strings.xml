@@ -1,8 +1,7 @@
 <resources>
-    <string name="app_name">Clipboard Copy</string>
+    <string name="app_name">Copy Copy</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_main">MainActivity</string>
@@ -11,4 +10,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_your_message_here">Type your message here...</string>
+    <string name="coppied">Coppied!</string>
+    <string name="message">Message</string>
+
+    <array name="item_long_click">
+        <item name="copy">Copy Text</item>
+        <item name="share">Share Text</item>
+        <item name="fav">Add to favourite</item>
+        <item name="delete">Delete</item>
+    </array>
 </resources>

@@ -7,5 +7,5 @@ public class Constant {
     public final static String URL_ROOT = "https://clipboard-copy.firebaseio.com/";
     public final static String KEY_MSG = "Message";
     public final static String KEY_BUNDLE = "bundle";
-
+    public final static String KEY_DATE_FORMAT ="dd/MM";
 }

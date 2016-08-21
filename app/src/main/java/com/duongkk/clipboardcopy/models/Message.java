@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by MyPC on 8/19/2016.
  */
 public class Message implements Parcelable {
-    int code;
+    String code;
     String id;
     String date;
     String content;
@@ -16,7 +16,7 @@ public class Message implements Parcelable {
     public Message(){};
 
     protected Message(Parcel in) {
-        code = in.readInt();
+        code = in.readString();
         id = in.readString();
         date = in.readString();
         content = in.readString();
@@ -35,11 +35,11 @@ public class Message implements Parcelable {
         }
     };
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -82,7 +82,7 @@ public class Message implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(code);
+        parcel.writeString(code);
         parcel.writeString(id);
         parcel.writeString(date);
         parcel.writeString(content);

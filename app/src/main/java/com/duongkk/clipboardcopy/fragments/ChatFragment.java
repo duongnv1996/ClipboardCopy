@@ -2,26 +2,30 @@ package com.duongkk.clipboardcopy.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
-import com.duongkk.clipboardcopy.AppController;
 import com.duongkk.clipboardcopy.R;
 import com.duongkk.clipboardcopy.adapters.MessageAdapter;
+import com.duongkk.clipboardcopy.application.AppController;
+import com.duongkk.clipboardcopy.interfaces.CallBackFirebase;
 import com.duongkk.clipboardcopy.models.Message;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
+import com.duongkk.clipboardcopy.utils.RLog;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
+import com.github.clans.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +33,7 @@ import java.util.List;
 /**
  * Created by MyPC on 8/19/2016.
  */
-public class ChatFragment extends Fragment implements ChildEventListener,View.OnClickListener{
+public class ChatFragment extends Fragment implements ChildEventListener,View.OnClickListener,CallBackFirebase{
     private RecyclerView mRcvChat;
     private MessageAdapter mAdapter;
     private List<Message> mListMessages;
@@ -37,11 +41,11 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
 
     private EditText mEdtMessage;
     private FloatingActionButton mBtnSend;
-
+    private LinearLayout mLayoutNotfound;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Firebase.setAndroidContext(getContext());
+
         mRoot = new Firebase(Constant.URL_ROOT);
     }
 
@@ -54,26 +58,23 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
         mListMessages = new ArrayList<>();
 
 
-        mAdapter = new MessageAdapter(getContext(), mListMessages);
+        mAdapter = new MessageAdapter(getContext(), mListMessages,this);
         mRcvChat.setAdapter(mAdapter);
-
+        mRcvChat.setItemAnimator(new DefaultItemAnimator());
 
         mEdtMessage = (EditText) view.findViewById(R.id.edt_chat);
         mBtnSend = (FloatingActionButton) view.findViewById(R.id.btn_send);
+        mBtnSend.setVisibility(View.VISIBLE);
+        mBtnSend.showButtonInMenu(true);
+        mBtnSend.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.scale_up));
+       // mBtnSend.setHideAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.scale_down));
         mBtnSend.setOnClickListener(this);
         mEdtMessage.setOnClickListener(this);
-        mRoot.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });
-        mRoot.addChildEventListener(this);
-
+        mRoot.addChildEventListener(ChatFragment.this);
+        mLayoutNotfound =(LinearLayout)view.findViewById(R.id.ll_notfound);
 
     }
+
 
     @Nullable
     @Override
@@ -84,11 +85,13 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
 
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+        mLayoutNotfound.setVisibility(View.GONE);
         Message msg = dataSnapshot.getValue(Message.class);
         if(msg!=null){
+            msg.setCode(dataSnapshot.getKey());
             if(msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
             mListMessages.add(msg);
-           mAdapter.notifyDataSetChanged();
+            mAdapter.notifyDataSetChanged();
             mRcvChat.smoothScrollToPosition(mAdapter.getItemCount()-1);
         }
 
@@ -96,22 +99,19 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
 
     @Override
     public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
     }
 
     @Override
     public void onChildRemoved(DataSnapshot dataSnapshot) {
-
     }
 
     @Override
     public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
     }
 
     @Override
     public void onCancelled(FirebaseError firebaseError) {
-
+        RLog.e("Not found~");
     }
 
     @Override
@@ -143,5 +143,17 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
                 break;
             }
         }
+    }
+
+    @Override
+    public void remove(String code, final int pos) {
+        Firebase node = mRoot.child(code);
+        if(node!=null)
+            node.removeValue(new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                mAdapter.removeItem(pos);
+            }
+        });
     }
 }
