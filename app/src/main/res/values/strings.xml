@@ -12,6 +12,19 @@
     <string name="type_your_message_here">Type your message here...</string>
     <string name="coppied">Coppied!</string>
     <string name="message">Message</string>
+    <string name="register">Register</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="already_registed_login_me">Already registed. Login me!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="please_enter_email">"Please enter your email! "</string>
+    <string name="enter_pass">"Please enter your password! "</string>
+    <string name="missing_data">Missing data</string>
+    <string name="pass_incorrectly">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failt">Authentication failed</string>
+    <string name="emaill_incorrectly">Email is invalid, please enter your email then try again!</string>
+    <string name="repassword">Re-password</string>
+    <string name="repass_incorrectly">Passwords do not match.</string>
 
     <array name="item_long_click">
         <item name="copy">Copy Text</item>

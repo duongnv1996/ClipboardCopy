@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.duongkk.clipboardcopy.R;
 
@@ -30,6 +32,11 @@ public class CommonUtils {
         AlertDialog dialog = builder.create();
         dialog.show();
         return dialog;
+    }
+    public static void hideKeyBroad(Context context, EditText mEdt) {
+
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(mEdt.getWindowToken(), 0);
     }
 
 //    public static boolean verifyEditext(Context context, @Nullable EditText mEdtPass, @Nullable EditText mEdtFirstName,@Nullable EditText mEdtLastName, @Nullable EditText mEdtPass2, @Nullable EditText mEdtAddress, @Nullable EditText mEdtPhone) {
