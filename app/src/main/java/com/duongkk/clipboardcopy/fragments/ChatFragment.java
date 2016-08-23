@@ -21,6 +21,7 @@ import com.duongkk.clipboardcopy.models.Message;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
 import com.duongkk.clipboardcopy.utils.RLog;
+import com.duongkk.clipboardcopy.utils.SharedPref;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -45,8 +46,8 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mRoot = new Firebase(Constant.URL_ROOT);
+        RLog.e(SharedPref.getInstance(getContext()).getString(Constant.KEY_URL_ID,""));
+        mRoot = new Firebase(Constant.URL_ROOT_FINAL+SharedPref.getInstance(getContext()).getString(Constant.KEY_URL_ID,""));
     }
 
     @Override

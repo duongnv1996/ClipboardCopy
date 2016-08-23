@@ -13,16 +13,23 @@ import com.duongkk.clipboardcopy.fragments.ChatFragment;
 import com.duongkk.clipboardcopy.fragments.FavouriteFragment;
 import com.duongkk.clipboardcopy.fragments.SettingFragment;
 import com.duongkk.clipboardcopy.service.ClipboardListener;
+import com.duongkk.clipboardcopy.utils.Constant;
+import com.duongkk.clipboardcopy.utils.SharedPref;
 
 public class MainActivity extends AppCompatActivity {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    Intent intent;
     TabLayout tabLayout;
     int[] tabIcons ={R.drawable.ic_chat_tab,R.drawable.ic_fav_tab,R.drawable.ic_setting_tab};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if(checkSelfPermission(Manifest.permission.READ_PHONE_STATE)!= PackageManager.PERMISSION_GRANTED)
+//            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE},100);
+//        }
         setContentView(R.layout.activity_main);
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
@@ -64,7 +71,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         setupTabIcons();
-        startService(new Intent(this, ClipboardListener.class));
+        intent = new Intent(this, ClipboardListener.class);
+
+        startMyService();
+    }
+    public void startMyService(){
+        if(SharedPref.getInstance(this).getBoolean(Constant.KEY_ON_SERVICE,true))
+        startService(intent);
+    }
+    public void stopMyService(){
+        stopService(intent);
     }
 
     private void setupTabIcons() {

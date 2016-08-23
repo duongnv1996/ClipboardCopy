@@ -21,75 +21,76 @@ import com.google.firebase.auth.FirebaseAuth;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.edt_email)
-     EditText mEdtEmail;
+    EditText mEdtEmail;
     @Bind(R.id.edt_password)
     EditText mEdtPassword;
     @Bind(R.id.edt_repassword)
     EditText mEdtRePassword;
     @Bind(R.id.btn_register)
-     Button mBtnReg;
+    Button mBtnReg;
     @Bind(R.id.btn_goto_login)
-     Button mBtnLogin;
+    Button mBtnLogin;
     @Bind(R.id.btn_resetpass)
-     Button mBtnResetPass;
+    Button mBtnResetPass;
     @Bind(R.id.progressBar)
-     ProgressBar mProgress;
+    ProgressBar mProgress;
 
 
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
 
-        mAuth=FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.btn_goto_login:{
+        switch (view.getId()) {
+            case R.id.btn_goto_login: {
                 finish();
                 break;
             }
-            case R.id.btn_register:{
-                CommonUtils.hideKeyBroad(this,mEdtPassword);
+            case R.id.btn_register: {
+                CommonUtils.hideKeyBroad(this, mEdtPassword);
                 final String email = mEdtEmail.getText().toString();
                 final String pass = mEdtPassword.getText().toString();
                 String repass = mEdtRePassword.getText().toString();
 
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.please_enter_email)
                             .show();
                     return;
                 }
-                if(!email.contains("@")){
+                if (!email.contains("@")) {
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.emaill_incorrectly)
                             .show();
                     return;
                 }
-                if(pass.isEmpty()){
+                if (pass.isEmpty()) {
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.enter_pass)
                             .show();
                     return;
                 }
-                if(pass.length()<6){
+                if (pass.length() < 6) {
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.pass_incorrectly)
                             .show();
                     return;
                 }
-                if(!pass.equals(repass)){
+                if (!pass.equals(repass)) {
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.repass_incorrectly)
@@ -98,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
 
                 mProgress.setVisibility(View.VISIBLE);
-                mAuth.createUserWithEmailAndPassword(email,pass)
+                mAuth.createUserWithEmailAndPassword(email, pass)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -110,13 +111,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                             .content(task.getException().getMessage())
                                             .show();
                                 } else {
-                                  //  startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                                    Toast.makeText(RegisterActivity.this,"Register successfull. Please login to use service!",Toast.LENGTH_SHORT).show();
-                                    Intent intent =new Intent();
-                                    intent.putExtra(Constant.KEY_EMAIL,email);
-                                    intent.putExtra(Constant.KEY_PASS,pass);
-                                    setResult(RESULT_OK,intent);
-                                    finish();
+                                    //Firebase root = new Firebase(Constant.URL_ROOT + "users/"+mAuth.getCurrentUser().getUid()+"/");
+
+                                            Toast.makeText(RegisterActivity.this, "Register successfull. Please login to use service!", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent();
+                                            intent.putExtra(Constant.KEY_EMAIL, email);
+                                            intent.putExtra(Constant.KEY_PASS, pass);
+                                            setResult(RESULT_OK, intent);
+                                            finish();
+
+                                    //  startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+
                                 }
                             }
                         });

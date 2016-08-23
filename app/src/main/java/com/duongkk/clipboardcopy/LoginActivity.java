@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
+import com.duongkk.clipboardcopy.utils.SharedPref;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -44,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth=FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser()!=null){
+        if(mAuth.getCurrentUser()!=null && !SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,"").equals("")){
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
@@ -128,6 +129,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             .content(task.getException().getMessage())
                                             .show();
                                 } else {
+                                    SharedPref.getInstance(getBaseContext()).putString(Constant.KEY_URL_ID,"users/"+mAuth.getCurrentUser().getUid()+"/");
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     finish();
                                 }

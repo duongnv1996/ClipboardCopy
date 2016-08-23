@@ -1,13 +1,625 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_setting"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.duongkk.clipboardcopy.fragments.SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_medium"
+                android:text="Duongkk@gmail.com" />
+            <!--general-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="?selectableItemBackground"
+                app:cardElevation="@dimen/margin_small">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Generate"-->
+                    <!--android:paddingTop="@dimen/margin_medium"-->
+                    <!--android:paddingLeft="@dimen/margin_medium"-->
+                    <!--style="@style/TextTitle"/>-->
+                    <LinearLayout
+                        android:id="@+id/ll_on"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_phonelink_black_24dp" />
+                        <!--Content-->
+
+                        <TextView
+                            style="@style/TextMediumTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="Copy Copy is active" />
+
+
+                        <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/sw_on"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            app:theme="@style/Color1SwitchStyle"
+                            android:layout_marginRight="@dimen/margin_medium"
+                            android:checked="true"
+                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+                             />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_connect"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:gravity="top"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_devices_other_black_24dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Connect to Computer" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="How to Connect to Computer" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+            <!--data-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="0dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="?selectableItemBackground"
+                app:cardElevation="@dimen/margin_small">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Generate"-->
+                    <!--android:paddingTop="@dimen/margin_medium"-->
+                    <!--android:paddingLeft="@dimen/margin_medium"-->
+                    <!--style="@style/TextTitle"/>-->
+                    <LinearLayout
+                        android:id="@+id/ll_notification"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_notifications_black_24dp" />
+                        <!--Content-->
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Notify when active" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Show status bar icon when Copy Copy is active" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <android.support.v7.widget.AppCompatCheckBox
+                            android:id="@+id/cb_noti"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:theme="@style/Color1SwitchStyle"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="@dimen/margin_medium"
+                            android:checked="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_delete"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_delete_black_24dp" />
+                        <!--Content-->
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Delete history" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Delete all text from history" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <!--theme-->
+                    <LinearLayout
+                        android:id="@+id/ll_theme"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:gravity="top"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_brightness_2_black_24dp" />
+                        <!--Content-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Night mode scheule" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Auto" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:gravity="top"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+                        <!--Content-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Log out" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--about-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentPadding="0dp"
+                android:layout_marginBottom="@dimen/margin_medium"
+                android:background="?selectableItemBackground"
+                app:cardElevation="@dimen/margin_small">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3dp"
+                    android:background="@color/divider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="Generate"-->
+                    <!--android:paddingTop="@dimen/margin_medium"-->
+                    <!--android:paddingLeft="@dimen/margin_medium"-->
+                    <!--style="@style/TextTitle"/>-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_version" />
+                        <!--Content-->
+                        <!--version-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/app_name" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Version 1.0" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--rate-->
+                    <LinearLayout
+                        android:id="@+id/ll_rateapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_rate" />
+                        <!--Content-->
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rate Copy Copy on Play Store" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Your 5-star rating and Google +1 are appreciated." />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--contact-->
+                    <LinearLayout
+                        android:id="@+id/ll_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:gravity="top"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_mail_black_24dp" />
+                        <!--Content-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Contact developer" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Problem? Question? Drop me an email at duongkk.dev@gmail.com" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <!--moreapp-->
+                    <LinearLayout
+                        android:id="@+id/ll_moreapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_ll_setting"
+                        android:background="?selectableItemBackground"
+                        android:gravity="top"
+                        android:onClick="onClick"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_margin="@dimen/margin_icon_setting"
+                            app:srcCompat="@drawable/ic_moreapp" />
+                        <!--Content-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="0.3dp"
+                                android:layout_marginBottom="@dimen/margin_small"
+                                android:background="@color/divider" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    style="@style/TextMediumTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="More apps" />
+
+                                <TextView
+                                    style="@style/TextSmallContent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="If you like this app you may want to check out my other apps." />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

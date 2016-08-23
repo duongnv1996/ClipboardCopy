@@ -10,6 +10,10 @@
         <item name="colorControlActivated">@color/white</item>
         <item name="colorControlHighlight">@color/white</item>
     </style>
+    <!--style switch-->
+    <style name="Color1SwitchStyle"  parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -39,5 +43,21 @@
     <style name="TextSmallSecond" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <!--Setting-->
+    <style name="TextTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/txt_setting</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+       <item name="android:textStyle">bold</item>
+
+    </style>
+    <style name="TextSmallContent" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/txt_setting_content</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+    <style name="TextMediumTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">@dimen/txt_setting_tilte</item>
+        <item name="android:textColor">@color/primary_text</item>
     </style>
 </resources>

@@ -13,6 +13,8 @@ import com.duongkk.clipboardcopy.application.AppController;
 import com.duongkk.clipboardcopy.models.Message;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
+import com.duongkk.clipboardcopy.utils.RLog;
+import com.duongkk.clipboardcopy.utils.SharedPref;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -21,7 +23,7 @@ import com.firebase.client.FirebaseError;
 /**
  * Created by MyPC on 7/29/2016.
  */
-public class ClipboardListener extends Service implements ChildEventListener {
+public class ClipboardListener extends Service implements ChildEventListener,ClipboardManager.OnPrimaryClipChangedListener {
     ClipboardManager clipboard;
     private Firebase mRoot;
     private String contentFromServer;
@@ -30,7 +32,8 @@ public class ClipboardListener extends Service implements ChildEventListener {
     public void onCreate() {
         super.onCreate();
         clipboard  = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
-        mRoot = new Firebase(Constant.URL_ROOT);
+        RLog.e(SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,""));
+        mRoot = new Firebase(Constant.URL_ROOT_FINAL+SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,""));
         mRoot.addChildEventListener(this);
     }
     @Override
@@ -39,34 +42,14 @@ public class ClipboardListener extends Service implements ChildEventListener {
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        clipboard.addPrimaryClipChangedListener( new ClipboardManager.OnPrimaryClipChangedListener() {
-            public void onPrimaryClipChanged() {
-
-                final String content = clipboard.getText().toString();
-                if(mPreviousText.equals(content) ) return;
-                else{
-                    if(content!=null && !content.isEmpty() && !content.equals(contentFromServer) && !content.equals(AppController.getInstance().getCoppiedText())) {
-                        Message msg = new Message();
-                        msg.setContent(content);
-                        msg.setDate(CommonUtils.getCurrentTime());
-                        msg.setId(CommonUtils.getImei(getBaseContext()));
-                        mRoot.push().setValue(msg, new Firebase.CompletionListener() {
-                            @Override
-                            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                                Toast.makeText(getBaseContext(), content, Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                    mPreviousText = content;
-                }
-
-            }
-        });
+        clipboard.addPrimaryClipChangedListener(this);
         return START_STICKY;
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
+        clipboard.removePrimaryClipChangedListener(this);
+        stopSelf();
     }
     @Override
     public void onStart(Intent intent, int startId) {
@@ -110,6 +93,29 @@ public class ClipboardListener extends Service implements ChildEventListener {
 
     @Override
     public void onCancelled(FirebaseError firebaseError) {
+
+    }
+
+    @Override
+    public void onPrimaryClipChanged() {
+
+        final String content = clipboard.getText().toString();
+        if(mPreviousText.equals(content) ) return;
+        else{
+            if(content!=null && !content.isEmpty() && !content.equals(contentFromServer) && !content.equals(AppController.getInstance().getCoppiedText())) {
+                Message msg = new Message();
+                msg.setContent(content);
+                msg.setDate(CommonUtils.getCurrentTime());
+                msg.setId(CommonUtils.getImei(getBaseContext()));
+                mRoot.push().setValue(msg, new Firebase.CompletionListener() {
+                    @Override
+                    public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                        Toast.makeText(getBaseContext(), content, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            mPreviousText = content;
+        }
 
     }
 }
