@@ -1,13 +1,51 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.duongkk.clipboardcopy.fragments.FavouriteFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:id="@+id/ll_notfound"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_height="match_parent">
 
-</FrameLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:scaleType="center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_large"
+                android:src="@drawable/ic_not_found"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="@dimen/text_large"
+                style="@style/TextMediumBlack"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:text="Nothing shared"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:textSize="@dimen/text_medium"
+                style="@style/TextSmallSecond"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="Things you share will appear here"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

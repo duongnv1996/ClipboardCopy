@@ -19,7 +19,6 @@ import com.duongkk.clipboardcopy.interfaces.CallBackFirebase;
 import com.duongkk.clipboardcopy.models.Message;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
-import com.duongkk.clipboardcopy.utils.RLog;
 
 import java.util.List;
 
@@ -28,38 +27,43 @@ import me.himanshusoni.chatmessageview.ChatMessageView;
 /**
  * Created by MyPC on 8/19/2016.
  */
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+public class MessageFavouriteAdapter extends RecyclerView.Adapter<MessageFavouriteAdapter.ViewHolder> {
     List<Message> listMessages;
     ClipboardManager clipboard;
     Context context;
-    static  SparseBooleanArray sparseBooleanArray;
+    static SparseBooleanArray sparseBooleanArray;
     String imei;
-    DatabaseHandler db ;
+    DatabaseHandler db;
     CallBackFirebase callbackFirebase;
-    public MessageAdapter(Context context,List<Message> listMessages,CallBackFirebase callbackFirebase){
-        this.listMessages = listMessages;
-        this.callbackFirebase = callbackFirebase;
+
+    public MessageFavouriteAdapter(Context context, List<Message> listMessages, CallBackFirebase callbackFirebase) {
         this.context = context;
+        this.callbackFirebase = callbackFirebase;
+        db = new DatabaseHandler(context);
+        this.listMessages =listMessages;
+
         sparseBooleanArray = new SparseBooleanArray();
         imei = AppController.getInstance().getImei();
-        int i=0;
-        clipboard= (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        for (Message msg:this.listMessages) {
-            if(msg.getId().equals(imei)){
-                sparseBooleanArray.put(i,true);
+        int i = 0;
+        clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        for (Message msg : this.listMessages) {
+            if (msg.getId().equals(imei)) {
+                sparseBooleanArray.put(i, true);
             }
         }
-        db = new DatabaseHandler(context);
+
     }
-    public void addItem(Message msg){
-        if(msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
-       // if(msg.getId().equals(imei)) sparseBooleanArray.put(listMessages.size()-1,true);
+
+    public void addItem(Message msg) {
+        if (msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
+        // if(msg.getId().equals(imei)) sparseBooleanArray.put(listMessages.size()-1,true);
         listMessages.add(msg);
         notifyDataSetChanged();
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat,parent,false) );
+        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false));
     }
 
     @Override
@@ -67,7 +71,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         final Message msg = listMessages.get(position);
         holder.cardMessage.setVisibility(View.VISIBLE);
         holder.cardMessageRecieve.setVisibility(View.VISIBLE);
-        if(msg.isClient()){
+        if (msg.isClient()) {
             //sender
             holder.cardMessageRecieve.setVisibility(View.GONE);
             holder.tvContent.setText(msg.getContent());
@@ -82,11 +86,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             holder.cardMessage.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    showMenuText(msg,view,position);
+                    showMenuText(msg, view, position);
                     return true;
                 }
             });
-        }else{
+        } else {
             //recieve
             holder.cardMessage.setVisibility(View.GONE);
             holder.tvContentRecieve.setText(msg.getContent());
@@ -101,7 +105,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             holder.cardMessageRecieve.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
-                    showMenuText(msg,view,position);
+                    showMenuText(msg, view, position);
                     return true;
                 }
             });
@@ -113,52 +117,47 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         view.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);
         new MaterialDialog.Builder(context).title(R.string.message)
                 .itemsColorRes(R.color.primary_text)
-                .items(R.array.item_long_click)
+                .items(R.array.item_long_click_fav)
                 .itemsCallback(new MaterialDialog.ListCallback() {
-            @Override
-            public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
-                switch (position){
-                    case 0:{
-                        copyTextContent(msg);
-                        break;
+                    @Override
+                    public void onSelection(MaterialDialog dialog, View itemView, int position, CharSequence text) {
+                        switch (position) {
+                            case 0: {
+                                copyTextContent(msg);
+                                break;
+                            }
+                            case 1: {
+                                CommonUtils.shareSimpleText(msg.getContent(), context);
+                                break;
+                            }
+                            case 2: {
+                                if( db.removeRow(msg.getId())>0)
+                                notifyDataSetChanged();
+                                break;
+                            }
+                        }
                     }
-                    case 1:{
-                       CommonUtils.shareSimpleText(msg.getContent(),context);
-                        break;
-                    }
-                    case 2:{
-                      if( db.insertRow(msg) ==-1){
-                          RLog.e("Cannot insert!");
-                      }else{
-                          Toast.makeText(context, R.string.add_favourite,Toast.LENGTH_SHORT).show();
-                      }
-                        break;
-                    }
-                    case 3:{
-                     callbackFirebase.remove(msg.getCode(),pos);
-                        break;
-                    }
-                }
-            }
-        }).show();
+                }).show();
     }
-    public void removeItem(int pos){
-        if(pos<listMessages.size()){
+
+    public void removeItem(int pos) {
+        if (pos < listMessages.size()) {
             listMessages.remove(pos);
             notifyDataSetChanged();
         }
     }
+
     private void copyTextContent(Message msg) {
         AppController.getInstance().setCoppiedText(msg.getContent());
         clipboard.setText(msg.getContent());
-        Toast.makeText(context, R.string.coppied,Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.coppied, Toast.LENGTH_SHORT).show();
     }
 
     private String getGreaterTime(Message msg) {
         String currentDate = CommonUtils.getCurrentTimeByFormat(Constant.KEY_DATE_FORMAT);
         String date = msg.getDate();
         String arrTime[] = date.split(" ");
-        if(currentDate.equals(arrTime[0])) date=arrTime[1];
+        if (currentDate.equals(arrTime[0])) date = arrTime[1];
         return date;
     }
 
@@ -168,7 +167,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvContent;
         TextView tvTime;
@@ -176,6 +175,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         TextView tvContentRecieve;
         TextView tvTimeRecieve;
         ChatMessageView cardMessageRecieve;
+
         public ViewHolder(View itemView) {
             super(itemView);
             tvContent = (TextView) itemView.findViewById(R.id.tv_content);

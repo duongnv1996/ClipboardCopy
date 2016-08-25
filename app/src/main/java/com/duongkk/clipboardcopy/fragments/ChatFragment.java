@@ -2,7 +2,6 @@ package com.duongkk.clipboardcopy.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -34,7 +33,7 @@ import java.util.List;
 /**
  * Created by MyPC on 8/19/2016.
  */
-public class ChatFragment extends Fragment implements ChildEventListener,View.OnClickListener,CallBackFirebase{
+public class ChatFragment extends BaseFragment implements ChildEventListener,View.OnClickListener,CallBackFirebase{
     private RecyclerView mRcvChat;
     private MessageAdapter mAdapter;
     private List<Message> mListMessages;
@@ -127,7 +126,8 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
             }
 
             case R.id.btn_send:{
-
+                mBtnSend.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.scale_down));
+                mBtnSend.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.scale_up));
                 String content = mEdtMessage.getText().toString();
                 if(!content.equals("")){
                     Message msg = new Message();
@@ -157,4 +157,5 @@ public class ChatFragment extends Fragment implements ChildEventListener,View.On
             }
         });
     }
+
 }

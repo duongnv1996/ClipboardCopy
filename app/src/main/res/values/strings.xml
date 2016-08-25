@@ -32,11 +32,17 @@
     <string name="back_to_login"><![CDATA[<< Back]]></string>
     <string name="success">Successful</string>
     <string name="sent_email">We have sent you instructions to reset your password!</string>
+    <string name="add_favourite">Added to Favourite</string>
 
     <array name="item_long_click">
         <item name="copy">Copy Text</item>
         <item name="share">Share Text</item>
         <item name="fav">Add to favourite</item>
+        <item name="delete">Delete</item>
+    </array>
+    <array name="item_long_click_fav">
+        <item name="copy">Copy Text</item>
+        <item name="share">Share Text</item>
         <item name="delete">Delete</item>
     </array>
 </resources>

@@ -13,12 +13,15 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.duongkk.clipboardcopy.LoginActivity;
 import com.duongkk.clipboardcopy.MainActivity;
 import com.duongkk.clipboardcopy.R;
 import com.duongkk.clipboardcopy.utils.Constant;
 import com.duongkk.clipboardcopy.utils.SharedPref;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.Bind;
@@ -27,7 +30,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends Fragment implements View.OnClickListener,OnCheckedChangeListener{
+public class SettingFragment extends BaseFragment implements View.OnClickListener,OnCheckedChangeListener{
 
      private LinearLayout mLogout;
     @Bind(R.id.ll_on)
@@ -37,8 +40,20 @@ public class SettingFragment extends Fragment implements View.OnClickListener,On
     @Bind(R.id.tv_name)
     TextView mTvName;
 
+    @Bind(R.id.ll_delete)
+    LinearLayout mLayoutDelete;
+
+    private Firebase mRoot;
+
     public SettingFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mRoot = new Firebase(Constant.URL_ROOT_FINAL+SharedPref.getInstance(getContext()).getString(Constant.KEY_URL_ID,""));
+
     }
 
     @Override
@@ -51,12 +66,10 @@ public class SettingFragment extends Fragment implements View.OnClickListener,On
         if(auth.getCurrentUser()!=null){
             mTvName.setText(auth.getCurrentUser().getEmail());
         }
-
-
         mSwitchOn.setChecked(SharedPref.getInstance(getContext()).getBoolean(Constant.KEY_ON_SERVICE,true));
         mSwitchOn.setOnCheckedChangeListener(this);
         mLayoutOn.setOnClickListener(this);
-
+        mLayoutDelete.setOnClickListener(this);
     }
 
     @Override
@@ -75,6 +88,15 @@ public class SettingFragment extends Fragment implements View.OnClickListener,On
             }
             case R.id.ll_on:{
                 mSwitchOn.setChecked(!mSwitchOn.isChecked());
+                break;
+            }
+            case R.id.ll_delete:{
+                mRoot.removeValue(new Firebase.CompletionListener() {
+                    @Override
+                    public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                        Toast.makeText(getContext(),"Deleted!",Toast.LENGTH_SHORT).show();
+                    }
+                });
                 break;
             }
         }
