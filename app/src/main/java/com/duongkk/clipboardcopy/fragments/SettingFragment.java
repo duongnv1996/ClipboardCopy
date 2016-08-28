@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.duongkk.clipboardcopy.GuideConnectActivity;
 import com.duongkk.clipboardcopy.LoginActivity;
 import com.duongkk.clipboardcopy.MainActivity;
@@ -31,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import me.grantland.widget.AutofitHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,7 +76,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mLayoutConnect = (LinearLayout) view.findViewById(R.id.ll_connect);
         mLayoutNotify = (LinearLayout) view.findViewById(R.id.ll_notification);
         mLayoutTheme = (LinearLayout) view.findViewById(R.id.ll_theme);
-
+        AutofitHelper.create(mTvName);
         mLogout.setOnClickListener(this);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()!=null){
@@ -93,6 +92,9 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mLayoutConnect.setOnClickListener(this);
         mLayoutNotify.setOnClickListener(this);
         mLayoutTheme.setOnClickListener(this);
+
+
+/*        night mode
         int modeType;
         modeType = AppCompatDelegate.getDefaultNightMode();
         choice= modeType;
@@ -100,20 +102,9 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         choice = theme;
        // ((MainActivity)getActivity()).applyTheme(theme);
         mTvTheme.setText(themes[theme]);
-//        if (modeType  == AppCompatDelegate.MODE_NIGHT_AUTO) {
-//            RLog.e("Default Mode: Auto");
-//            mTvTheme.setText(themes[0]);
-//
-//        } else if (modeType == AppCompatDelegate.MODE_NIGHT_YES) {
-//            RLog.e("Default Mode: Night");
-//             mTvTheme.setText(themes[2]);
-//        } else if (modeType == AppCompatDelegate.MODE_NIGHT_NO) {
-//            RLog.e("Default Mode: Day");
-//             mTvTheme.setText(themes[1]);
-//        }else {
-//             RLog.e("Default Mode: follow");
-//             mTvTheme.setText(themes[3]);
-//        }
+
+        */
+
     }
 
     @Override
@@ -154,7 +145,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 break;
             }
             case R.id.ll_theme:{
-               new MaterialDialog.Builder(getContext()).title(R.string.night_mode_scheule)
+            /*   new MaterialDialog.Builder(getContext()).title(R.string.night_mode_scheule)
                        .items(R.array.item_theme)
                        .itemsCallbackSingleChoice(choice, new MaterialDialog.ListCallbackSingleChoice() {
                            @Override
@@ -189,7 +180,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                        })
                .show();
 
-                break;
+                break;*/
             }
         }
     }

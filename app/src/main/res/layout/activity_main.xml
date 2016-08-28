@@ -10,64 +10,73 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:onClick="onClick"
-            android:background="@color/colorPrimaryDark"
-            app:cardElevation="3dp">
 
-            <LinearLayout
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/margin_small"
-                android:orientation="horizontal">
+                android:layout_margin="8dp"
+                android:onClick="onClick"
+                android:id="@+id/search"
+                app:cardElevation="3dp">
 
-                <ImageView
-                    android:id="@+id/img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    app:srcCompat="@drawable/ic_search" />
-
-                <TextView
-                    style="@style/TextMediumBlack"
-                    android:textColor="@color/white"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/margin_large"
-                    android:gravity="center_vertical"
-                    android:text="@string/search_for_any_message" />
-            </LinearLayout>
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_small"
+                    android:orientation="horizontal">
 
-        </android.support.v7.widget.CardView>
-        <!--<android.support.v7.widget.Toolbar-->
-        <!--android:id="@+id/toolbar"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:background="?attr/colorPrimary"-->
-        <!--app:paddingStart="0dp"-->
-        <!--android:padding="0dp"-->
-        <!--android:layout_margin="0dp"-->
-        <!--android:layout_gravity="left"-->
-        <!--android:gravity="left"-->
-        <!--&gt;-->
+                    <ImageView
+                        android:id="@+id/img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/margin_medium"
+                        app:srcCompat="@drawable/ic_search" />
 
-        <!---->
-        <!--</android.support.v7.widget.Toolbar>-->
+                    <TextView
+                        style="@style/TextMediumBlack"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/margin_large"
+                        android:gravity="center_vertical"
+                        android:text="@string/search_for_any_message"
+                        android:textColor="@color/secondary_text" />
+                </LinearLayout>
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            </android.support.v7.widget.CardView>
+            <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="?attr/actionBarSize"-->
+            <!--android:background="?attr/colorPrimary"-->
+            <!--app:paddingStart="0dp"-->
+            <!--android:padding="0dp"-->
+            <!--android:layout_margin="0dp"-->
+            <!--android:layout_gravity="left"-->
+            <!--android:gravity="left"-->
+            <!--&gt;-->
+
+            <!---->
+            <!--</android.support.v7.widget.Toolbar>-->
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 

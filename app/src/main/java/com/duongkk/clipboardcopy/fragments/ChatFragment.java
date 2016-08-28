@@ -42,6 +42,8 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     private EditText mEdtMessage;
     private FloatingActionButton mBtnSend;
     private LinearLayout mLayoutNotfound;
+
+    private String txt="";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +89,13 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         mLayoutNotfound.setVisibility(View.GONE);
         Message msg = dataSnapshot.getValue(Message.class);
-        if(msg!=null){
+
+        if(msg!=null && !msg.getContent().equals(txt)){
+            txt = msg.getContent();
             msg.setCode(dataSnapshot.getKey());
             if(msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
             mListMessages.add(msg);
-            mAdapter.notifyDataSetChanged();
+            mAdapter.notifyItemInserted(mAdapter.getItemCount()-1);
             mRcvChat.smoothScrollToPosition(mAdapter.getItemCount()-1);
         }
 
@@ -134,6 +138,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
                     msg.setId(CommonUtils.getImei(getContext()));
                     msg.setDate(CommonUtils.getCurrentTime());
                     msg.setContent(content);
+
                     mRoot.push().setValue(msg, new Firebase.CompletionListener() {
                         @Override
                         public void onComplete(FirebaseError firebaseError, Firebase firebase) {

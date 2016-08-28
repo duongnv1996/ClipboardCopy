@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
+    android:background="?selectableItemBackground"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.duongkk.clipboardcopy.fragments.SettingFragment">
@@ -31,20 +31,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                android:text="Duongkk@gmail.com" />
+                />
             <!--general-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
+                app:contentPadding="0dp"
+                app:cardCornerRadius="0dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?selectableItemBackground"
                 app:cardElevation="@dimen/margin_small">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="@color/divider" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.3dp"-->
+                    <!--android:background="@color/divider" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -157,14 +159,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="0dp"
+                app:cardCornerRadius="0dp"
+               app:contentPadding="0dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?selectableItemBackground"
                 app:cardElevation="@dimen/margin_small">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="@color/divider" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.3dp"-->
+                    <!--android:background="@color/divider" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -290,6 +294,7 @@
                         android:layout_height="@dimen/size_ll_setting"
                         android:background="?selectableItemBackground"
                         android:gravity="top"
+                        android:visibility="gone"
                         android:onClick="onClick"
                         android:orientation="horizontal">
 
@@ -391,14 +396,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentPadding="0dp"
+                android:padding="0dp"
+                app:cardCornerRadius="0dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?selectableItemBackground"
                 app:cardElevation="@dimen/margin_small">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.3dp"
-                    android:background="@color/divider" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="0.3dp"-->
+                    <!--android:background="@color/divider" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"

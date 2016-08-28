@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.duongkk.clipboardcopy.databases.DatabaseHandler;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +118,11 @@ public class MainActivity extends AppCompatActivity {
 //        filter.addAction(CommonUtils.YES_ACTION);
 //        registerReceiver(receiver1,filter);
         startMyService();
-        if (savedInstanceState == null) {
-        int theme = SharedPref.getInstance(this).getInt(Constant.KEY_THEME,  AppCompatDelegate.MODE_NIGHT_AUTO);
-        applyTheme(theme);
-        }
+//        Night mode
+//        if (savedInstanceState == null) {
+//        int theme = SharedPref.getInstance(this).getInt(Constant.KEY_THEME,  AppCompatDelegate.MODE_NIGHT_AUTO);
+//        applyTheme(theme);
+//        }
     }
 
     public void applyTheme(int theme) {
@@ -157,6 +159,24 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.search:{
+                startSearchActivity();
+                break;
+            }
+        }
+    }
+
+    public void startSearchActivity() {
+        Intent intent =new Intent(MainActivity.this,SearchActivity.class);
+        Bundle bundle= new Bundle();
+        //bundle.putParcelableArrayList(Constant.KEY_MSG,listMessages);
+        intent.putExtra(Constant.KEY_BUNDLE,bundle);
+        startActivity(intent);
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
