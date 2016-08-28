@@ -1,15 +1,20 @@
 package com.duongkk.clipboardcopy.utils;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.app.TaskStackBuilder;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.duongkk.clipboardcopy.MainActivity;
 import com.duongkk.clipboardcopy.R;
 
 import java.io.ByteArrayOutputStream;
@@ -19,6 +24,8 @@ import java.text.SimpleDateFormat;
  * Created by MyPC on 6/28/2016.
  */
 public class CommonUtils {
+    public static final String YES_ACTION ="YES_ACTION" ;
+
     public static AlertDialog showDialog(Context context, String name, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(name);
@@ -433,7 +440,31 @@ public class CommonUtils {
 //        return phone;
 //    }
 //
+public static void showNotification(Context context) {
+    android.support.v7.app.NotificationCompat.Builder builder = new android.support.v7.app.NotificationCompat.Builder(context);
+    builder.setSmallIcon(R.mipmap.ic_launcher);
+    builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher));
+    builder.setContentTitle(context.getString(R.string.app_name));
+    builder.setContentText(context.getString(R.string.active));
+    builder.setAutoCancel(false).setOngoing(true);
+    Intent intent = new Intent();
+    intent.setAction(YES_ACTION);
+    PendingIntent intentOff = PendingIntent.getBroadcast(context, 12345, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    builder.addAction(R.drawable.ic_adb_black_24dp,"TURN OFF",intentOff);
 
+    // builder.setStyle(NotificationCompat.InboxStyle)
+
+   // intent.putExtra("OK", Constants.OK);
+    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+    stackBuilder.addParentStack(MainActivity.class);
+    Intent intentMain = new Intent(context,MainActivity.class);
+    stackBuilder.addNextIntent(intentMain);
+    PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_CANCEL_CURRENT);
+    builder.setContentIntent(pendingIntent);
+
+    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    notificationManager.notify(1, builder.build());
+}
 
 
     public static String getStringImage(Bitmap bmp){

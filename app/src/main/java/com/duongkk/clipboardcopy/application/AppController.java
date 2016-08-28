@@ -3,6 +3,7 @@ package com.duongkk.clipboardcopy.application;
 import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
+import android.support.v7.app.AppCompatDelegate;
 
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
@@ -17,6 +18,11 @@ public class AppController extends MultiDexApplication {
      String imei;
     String coppiedText="";
     String url_root="https://clipboard-copy.firebaseio.com/";
+
+
+    static {
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
+    }
     @Override
     public void onCreate() {
         super.onCreate();

@@ -25,11 +25,11 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="TextMediumBlack" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_medium</item>
-        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textColor">@color/txt_primatry</item>
     </style>
     <style name="TextMediumWhite" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_medium</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/txt_msg_white</item>
     </style>
     <style name="TextSmallBlack" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_small</item>
@@ -37,7 +37,7 @@
     </style>
     <style name="TextSmallWhite" parent="TextAppearance.AppCompat">
         <item name="android:textSize">@dimen/text_small</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/txt_msg_white</item>
     </style>
 
     <style name="TextSmallSecond" parent="TextAppearance.AppCompat">

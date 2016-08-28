@@ -15,6 +15,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.duongkk.clipboardcopy.R;
 import com.duongkk.clipboardcopy.application.AppController;
 import com.duongkk.clipboardcopy.databases.DatabaseHandler;
+import com.duongkk.clipboardcopy.fragments.FavouriteFragment;
 import com.duongkk.clipboardcopy.interfaces.CallBackFirebase;
 import com.duongkk.clipboardcopy.models.Message;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
@@ -130,6 +131,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                       if( db.insertRow(msg) ==-1){
                           RLog.e("Cannot insert!");
                       }else{
+                          if(FavouriteFragment.mListMessages!=null )
+                              FavouriteFragment.mListMessages.add(msg);
                           Toast.makeText(context, R.string.add_favourite,Toast.LENGTH_SHORT).show();
                       }
                         break;
@@ -151,6 +154,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private void copyTextContent(Message msg) {
         AppController.getInstance().setCoppiedText(msg.getContent());
         clipboard.setText(msg.getContent());
+
+
         Toast.makeText(context, R.string.coppied,Toast.LENGTH_SHORT).show();
     }
 

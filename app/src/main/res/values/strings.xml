@@ -34,6 +34,16 @@
     <string name="sent_email">We have sent you instructions to reset your password!</string>
     <string name="add_favourite">Added to Favourite</string>
 
+    <string name="code_user_setting" format="false">Code: %s</string>
+    <string name="please_enter_your_code_to_the_computer_to_complete_the_connection">Please enter your code to the computer to complete the connection.</string>
+    <string name="active">Copy Copy is Active</string>
+    <string name="connect_to_computer">Connect to Computer</string>
+    <string name="how_to_connect_to_computer">How to Connect to Computer</string>
+    <string name="night_mode_scheule">Night mode scheule</string>
+    <string name="auto">Auto</string>
+    <string name="search_for_any_message">Search for any message</string>
+
+
     <array name="item_long_click">
         <item name="copy">Copy Text</item>
         <item name="share">Share Text</item>
@@ -44,5 +54,12 @@
         <item name="copy">Copy Text</item>
         <item name="share">Share Text</item>
         <item name="delete">Delete</item>
+    </array>
+
+    <array name="item_theme">
+        <item name="auto">Auto</item>
+        <item name="light">Always Light</item>
+        <item name="dark">Always Dark</item>
+        <item name="follow_system">Follows System</item>
     </array>
 </resources>

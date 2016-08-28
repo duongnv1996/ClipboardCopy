@@ -23,4 +23,5 @@
     <dimen name="txt_setting_content">14sp</dimen>
     <dimen name="size_ll_setting">65dp</dimen>
     <dimen name="margin_icon_setting">14dp</dimen>
+    <dimen name="radius_btn">5dp</dimen>
 </resources>

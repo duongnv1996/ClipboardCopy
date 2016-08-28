@@ -26,9 +26,9 @@ import java.util.List;
 public class FavouriteFragment extends BaseFragment implements View.OnClickListener, CallBackFirebase {
 
     private  RecyclerView mRcvChat;
-    private  MessageFavouriteAdapter mAdapter;
-    private  List<Message> mListMessages;
-    private  LinearLayout mLayoutNotfound;
+    private  static MessageFavouriteAdapter mAdapter;
+    public   static List<Message> mListMessages;
+    private   LinearLayout mLayoutNotfound;
     private  DatabaseHandler mDb;
      View rootView;
     @Override
@@ -46,9 +46,13 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
         mRcvChat.setHasFixedSize(true);
         mRcvChat.setLayoutManager(new LinearLayoutManager(getContext()));
         mListMessages = new ArrayList<>();
+        mListMessages.addAll(mDb.getAllRows());
         mAdapter = new MessageFavouriteAdapter(getContext(), mListMessages, this);
         mRcvChat.setAdapter(mAdapter);
         mLayoutNotfound = (LinearLayout) view.findViewById(R.id.ll_notfound);
+        if (mListMessages.size() > 0) {
+            mLayoutNotfound.setVisibility(View.GONE);
+        }
         //  mRcvChat.setAdapter(new MessageFavouriteAdapter(getContext(),mListMessages , this));
     }
 
@@ -56,12 +60,10 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
     public void onResume() {
         super.onResume();
         if (mListMessages != null) {
-            mListMessages.clear();
-            mListMessages.addAll(mDb.getAllRows());
+          //  mListMessages.clear();
+         //   mListMessages.addAll(mDb.getAllRows());
             mAdapter.notifyDataSetChanged();
-            if (mListMessages.size() > 0) {
-                mLayoutNotfound.setVisibility(View.GONE);
-            }
+
         }
     }
 

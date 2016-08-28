@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_setting"
+    android:background="@color/bg"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.duongkk.clipboardcopy.fragments.SettingFragment">
@@ -26,6 +26,7 @@
 
             <TextView
                 android:id="@+id/tv_name"
+                android:singleLine="true"
                 style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -133,13 +134,13 @@
                                     style="@style/TextMediumTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Connect to Computer" />
+                                    android:text="@string/connect_to_computer" />
 
                                 <TextView
                                     style="@style/TextSmallContent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="How to Connect to Computer" />
+                                    android:text="@string/how_to_connect_to_computer" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -321,13 +322,14 @@
                                     style="@style/TextMediumTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Night mode scheule" />
+                                    android:text="@string/night_mode_scheule" />
 
                                 <TextView
+                                    android:id="@+id/tv_theme"
                                     style="@style/TextSmallContent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Auto" />
+                                     />
                             </LinearLayout>
 
                         </LinearLayout>

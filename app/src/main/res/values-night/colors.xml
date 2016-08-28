@@ -2,8 +2,8 @@
 <resources>
     <!--<color name="colorPrimary">#03A9F4</color>-->
     <!--<color name="colorPrimaryDark">#0288D1</color>-->
-    <color name="colorPrimary">#00bcd4</color>
-    <color name="colorPrimaryDark">#0097a7</color>
+    <color name="colorPrimary">#ff607d8b</color>
+    <color name="colorPrimaryDark">#ff37474f</color>
     <color name="accent">#f2fe71</color>
     <color name="accentDark">#e4f06b</color>
     <color name="colorAccent">#f2fe71</color>
@@ -12,15 +12,14 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#878787</color>
     <color name="icons">#212121</color>
-    <color name="divider">#d7d7d7</color>
+    <color name="divider">#ff78909c</color>
     <color name="white">#ffffff</color>
-
     <color name="white_100">#92ffffff</color>
     <color name="white_bg">#6ccccccc</color>
-    <color name="bg_setting">#f5f5f5</color>
+    <color name="bg_setting">#6ccccccc</color>
 
 
-    <color name="bg">#ffffff</color>
+    <color name="bg">#ff37474f</color>
     <color name="txt_primatry">#212121</color>
     <color name="txt_msg_white">#ffffff</color>
 </resources>

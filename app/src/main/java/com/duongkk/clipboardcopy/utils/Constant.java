@@ -14,6 +14,10 @@ public class Constant {
     public final static String KEY_ID ="id";
     public final static String KEY_URL_ID ="url_id";
     public final static String KEY_ON_SERVICE ="service_on";
+    public final static String KEY_FINISH ="finish";
+
+    public final static String KEY_NOTIFY ="notify";
+    public final static String KEY_THEME ="theme";
 
     public final static int CODE_REG = 1;
     public static final int CODE_RESET = 2;

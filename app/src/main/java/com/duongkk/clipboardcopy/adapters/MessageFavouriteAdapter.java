@@ -40,7 +40,7 @@ public class MessageFavouriteAdapter extends RecyclerView.Adapter<MessageFavouri
         this.context = context;
         this.callbackFirebase = callbackFirebase;
         db = new DatabaseHandler(context);
-        this.listMessages =listMessages;
+        this.listMessages = listMessages;
 
         sparseBooleanArray = new SparseBooleanArray();
         imei = AppController.getInstance().getImei();
@@ -131,8 +131,8 @@ public class MessageFavouriteAdapter extends RecyclerView.Adapter<MessageFavouri
                                 break;
                             }
                             case 2: {
-                                if( db.removeRow(msg.getId())>0)
-                                notifyDataSetChanged();
+                                if (db.removeRow(msg.getCode()) > 0)
+                                    removeItem(pos);
                                 break;
                             }
                         }

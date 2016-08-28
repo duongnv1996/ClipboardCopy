@@ -130,7 +130,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             .show();
                                 } else {
                                     SharedPref.getInstance(getBaseContext()).putString(Constant.KEY_URL_ID,"users/"+mAuth.getCurrentUser().getUid()+"/");
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                   Intent intent =new Intent(LoginActivity.this, GuideConnectActivity.class);
+                                    intent.putExtra(Constant.KEY_FINISH,false);
+                                    startActivity(intent);
                                     finish();
                                 }
                             }
