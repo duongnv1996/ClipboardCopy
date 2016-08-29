@@ -6,9 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/white</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlActivated">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
+        <item name="colorControlNormal">@color/white_100</item>
+        <item name="colorControlActivated">@color/white_100</item>
+        <item name="colorControlHighlight">@color/white_100</item>
     </style>
     <!--style switch-->
     <style name="Color1SwitchStyle"  parent="Theme.AppCompat.Light.DarkActionBar">

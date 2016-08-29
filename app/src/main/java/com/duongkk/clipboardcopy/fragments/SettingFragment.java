@@ -49,6 +49,12 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     LinearLayout mLayoutConnect;
     LinearLayout mLayoutNotify;
     LinearLayout mLayoutTheme;
+    @Bind(R.id.ll_rateapp)
+    LinearLayout mLayoutRate;
+    @Bind(R.id.ll_contact)
+    LinearLayout mlayoutContact;
+    @Bind(R.id.ll_moreapp)
+   LinearLayout mLayoutMoreApp;
     @Bind(R.id.tv_theme)
     TextView mTvTheme;
     @Bind(R.id.cb_noti)
@@ -92,6 +98,9 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mLayoutConnect.setOnClickListener(this);
         mLayoutNotify.setOnClickListener(this);
         mLayoutTheme.setOnClickListener(this);
+        mLayoutRate.setOnClickListener(this);
+        mlayoutContact.setOnClickListener(this);
+        mLayoutMoreApp.setOnClickListener(this);
 
 
 /*        night mode
@@ -123,6 +132,18 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
             }
             case R.id.ll_on:{
                 mSwitchOn.setChecked(!mSwitchOn.isChecked());
+                break;
+            }
+            case R.id.ll_contact:{
+                CommonUtils.shareEmail("duongkk.dev@gmail.com",getContext());
+                break;
+            }
+            case R.id.ll_moreapp:{
+                CommonUtils.launchMoreAppMarket(getContext());
+                break;
+            }
+            case R.id.ll_rateapp:{
+                CommonUtils.launchMarket(getContext());
                 break;
             }
             case R.id.ll_notification:{

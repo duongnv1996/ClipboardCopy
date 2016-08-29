@@ -3,16 +3,19 @@ package com.duongkk.clipboardcopy.utils;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.duongkk.clipboardcopy.MainActivity;
 import com.duongkk.clipboardcopy.R;
@@ -25,7 +28,31 @@ import java.text.SimpleDateFormat;
  */
 public class CommonUtils {
     public static final String YES_ACTION ="YES_ACTION" ;
-
+    public static void launchMarket(Context context) {
+        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+        Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            context.startActivity(myAppLinkToMarket);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, " unable to find market app", Toast.LENGTH_LONG).show();
+        }
+    }
+    public static void launchMoreAppMarket(Context context) {
+        Uri uri = Uri.parse("market://search?q=pub:DuongKK");
+        Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        try {
+            context.startActivity(myAppLinkToMarket);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(context, " unable to find market app", Toast.LENGTH_LONG).show();
+        }
+    }
+    public static void shareEmail(String email,Context context){
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto",email, null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.app_name));
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+        context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+    }
     public static AlertDialog showDialog(Context context, String name, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(name);

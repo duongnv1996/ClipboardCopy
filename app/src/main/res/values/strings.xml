@@ -56,6 +56,12 @@
         <item name="delete">Delete</item>
     </array>
 
+    <array name="item_long_click_search">
+        <item name="copy">Copy Text</item>
+        <item name="share">Share Text</item>
+        <item name="fav">Add to favourite</item>
+    </array>
+
     <array name="item_theme">
         <item name="auto">Auto</item>
         <item name="light">Always Light</item>

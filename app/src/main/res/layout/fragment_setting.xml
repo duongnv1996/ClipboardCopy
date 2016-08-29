@@ -26,27 +26,26 @@
 
             <TextView
                 android:id="@+id/tv_name"
-                android:singleLine="true"
                 style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_medium"
-                />
+                android:singleLine="true" />
             <!--general-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="0dp"
-                app:contentPadding="0dp"
-                app:cardCornerRadius="0dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?selectableItemBackground"
-                app:cardElevation="@dimen/margin_small">
+                android:padding="0dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="@dimen/margin_small"
+                app:contentPadding="0dp">
 
                 <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="0.3dp"-->
-                    <!--android:background="@color/divider" />-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0.3dp"-->
+                <!--android:background="@color/divider" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -59,96 +58,106 @@
                     <!--android:paddingTop="@dimen/margin_medium"-->
                     <!--android:paddingLeft="@dimen/margin_medium"-->
                     <!--style="@style/TextTitle"/>-->
-                    <LinearLayout
-                        android:id="@+id/ll_on"
+                    <com.balysv.materialripple.MaterialRippleLayout
+
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_ll_setting"
-                        android:background="?selectableItemBackground"
-                        android:onClick="onClick"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="@dimen/margin_icon_setting"
-                            app:srcCompat="@drawable/ic_phonelink_black_24dp" />
-                        <!--Content-->
-
-                        <TextView
-                            style="@style/TextMediumTitle"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="Copy Copy is active" />
-
-
-                        <android.support.v7.widget.SwitchCompat
-                            android:id="@+id/sw_on"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            app:theme="@style/Color1SwitchStyle"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:checked="true"
-                            app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
-                             />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/ll_connect"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_ll_setting"
-                        android:background="?selectableItemBackground"
-                        android:gravity="top"
-                        android:onClick="onClick"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="@dimen/margin_icon_setting"
-                            app:srcCompat="@drawable/ic_devices_other_black_24dp" />
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:id="@+id/ll_on"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_ll_setting"
+                            android:background="?selectableItemBackground"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.3dp"
-                                android:layout_marginBottom="@dimen/margin_small"
-                                android:background="@color/divider" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/margin_icon_setting"
+                                app:srcCompat="@drawable/ic_phonelink_black_24dp" />
+                            <!--Content-->
+
+                            <TextView
+                                style="@style/TextMediumTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_vertical"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:text="Copy Copy is active" />
+
+
+                            <android.support.v7.widget.SwitchCompat
+                                android:id="@+id/sw_on"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/margin_medium"
+                                android:checked="true"
+                                app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
+                                app:theme="@style/Color1SwitchStyle" />
+                        </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/ll_connect"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_ll_setting"
+                            android:background="?selectableItemBackground"
+                            android:gravity="top"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/margin_icon_setting"
+                                app:srcCompat="@drawable/ic_devices_other_black_24dp" />
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
+                                android:gravity="center_vertical"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    style="@style/TextMediumTitle"
+                                <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/connect_to_computer" />
+                                    android:layout_height="0.3dp"
+                                    android:layout_marginBottom="@dimen/margin_small"
+                                    android:background="@color/divider" />
 
-                                <TextView
-                                    style="@style/TextSmallContent"
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/how_to_connect_to_computer" />
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/TextMediumTitle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/connect_to_computer" />
+
+                                    <TextView
+                                        style="@style/TextSmallContent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/how_to_connect_to_computer" />
+                                </LinearLayout>
+
                             </LinearLayout>
 
+
                         </LinearLayout>
-
-
-                    </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -158,17 +167,17 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="0dp"
-                app:cardCornerRadius="0dp"
-               app:contentPadding="0dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?selectableItemBackground"
-                app:cardElevation="@dimen/margin_small">
+                android:padding="0dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="@dimen/margin_small"
+                app:contentPadding="0dp">
 
                 <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="0.3dp"-->
-                    <!--android:background="@color/divider" />-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0.3dp"-->
+                <!--android:background="@color/divider" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -181,111 +190,124 @@
                     <!--android:paddingTop="@dimen/margin_medium"-->
                     <!--android:paddingLeft="@dimen/margin_medium"-->
                     <!--style="@style/TextTitle"/>-->
-                    <LinearLayout
-                        android:id="@+id/ll_notification"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_ll_setting"
-                        android:background="?selectableItemBackground"
-                        android:onClick="onClick"
-                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="@dimen/margin_icon_setting"
-                            app:srcCompat="@drawable/ic_notifications_black_24dp" />
-                        <!--Content-->
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:id="@+id/ll_notification"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_ll_setting"
+                            android:background="?selectableItemBackground"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/margin_icon_setting"
+                                app:srcCompat="@drawable/ic_notifications_black_24dp" />
+                            <!--Content-->
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    style="@style/TextMediumTitle"
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Notify when active" />
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
 
-                                <TextView
-                                    style="@style/TextSmallContent"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Show status bar icon when Copy Copy is active" />
+                                    <TextView
+                                        style="@style/TextMediumTitle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Notify when active" />
+
+                                    <TextView
+                                        style="@style/TextSmallContent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Show status bar icon when Copy Copy is active" />
+                                </LinearLayout>
                             </LinearLayout>
+
+
+                            <android.support.v7.widget.AppCompatCheckBox
+                                android:id="@+id/cb_noti"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="@dimen/margin_medium"
+                                android:checked="true"
+                                app:theme="@style/Color1SwitchStyle" />
                         </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
 
+                    <com.balysv.materialripple.MaterialRippleLayout
 
-                        <android.support.v7.widget.AppCompatCheckBox
-                            android:id="@+id/cb_noti"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:theme="@style/Color1SwitchStyle"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="@dimen/margin_medium"
-                            android:checked="true" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/ll_delete"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_ll_setting"
-                        android:background="?selectableItemBackground"
-                        android:onClick="onClick"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="@dimen/margin_icon_setting"
-                            app:srcCompat="@drawable/ic_delete_black_24dp" />
-                        <!--Content-->
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:id="@+id/ll_delete"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_ll_setting"
+                            android:background="?selectableItemBackground"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.3dp"
-                                android:layout_marginBottom="@dimen/margin_small"
-                                android:background="@color/divider" />
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/margin_icon_setting"
+                                app:srcCompat="@drawable/ic_delete_black_24dp" />
+                            <!--Content-->
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    style="@style/TextMediumTitle"
+                                <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Delete history" />
+                                    android:layout_height="0.3dp"
+                                    android:layout_marginBottom="@dimen/margin_small"
+                                    android:background="@color/divider" />
 
-                                <TextView
-                                    style="@style/TextSmallContent"
+                                <LinearLayout
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Delete all text from history" />
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/TextMediumTitle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Delete history" />
+
+                                    <TextView
+                                        style="@style/TextSmallContent"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Delete all text from history" />
+                                </LinearLayout>
                             </LinearLayout>
+
                         </LinearLayout>
-
-                    </LinearLayout>
-
+                    </com.balysv.materialripple.MaterialRippleLayout>
 
                     <!--theme-->
                     <LinearLayout
@@ -294,9 +316,9 @@
                         android:layout_height="@dimen/size_ll_setting"
                         android:background="?selectableItemBackground"
                         android:gravity="top"
-                        android:visibility="gone"
                         android:onClick="onClick"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -333,8 +355,7 @@
                                     android:id="@+id/tv_theme"
                                     style="@style/TextSmallContent"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                     />
+                                    android:layout_height="wrap_content" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -342,51 +363,57 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/ll_logout"
+                    <com.balysv.materialripple.MaterialRippleLayout
+
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_ll_setting"
-                        android:background="?selectableItemBackground"
-                        android:gravity="top"
-                        android:onClick="onClick"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="@dimen/margin_icon_setting"
-                            app:srcCompat="@drawable/ic_account_circle_black_24dp" />
-                        <!--Content-->
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
+                            android:id="@+id/ll_logout"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_ll_setting"
+                            android:background="?selectableItemBackground"
+                            android:gravity="top"
+                            android:onClick="onClick"
+                            android:orientation="horizontal">
 
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.3dp"
-                                android:layout_marginBottom="@dimen/margin_small"
-                                android:background="@color/divider" />
-
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/margin_icon_setting"
+                                app:srcCompat="@drawable/ic_account_circle_black_24dp" />
+                            <!--Content-->
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:gravity="center"
+                                android:gravity="center_vertical"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    style="@style/TextMediumTitle"
+                                <View
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Log out" />
+                                    android:layout_height="0.3dp"
+                                    android:layout_marginBottom="@dimen/margin_small"
+                                    android:background="@color/divider" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        style="@style/TextMediumTitle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Log out" />
+                                </LinearLayout>
+
                             </LinearLayout>
 
+
                         </LinearLayout>
-
-
-                    </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>
@@ -395,17 +422,17 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentPadding="0dp"
-                android:padding="0dp"
-                app:cardCornerRadius="0dp"
                 android:layout_marginBottom="@dimen/margin_medium"
                 android:background="?selectableItemBackground"
-                app:cardElevation="@dimen/margin_small">
+                android:padding="0dp"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="@dimen/margin_small"
+                app:contentPadding="0dp">
 
                 <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="0.3dp"-->
-                    <!--android:background="@color/divider" />-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0.3dp"-->
+                <!--android:background="@color/divider" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -418,11 +445,15 @@
                     <!--android:paddingTop="@dimen/margin_medium"-->
                     <!--android:paddingLeft="@dimen/margin_medium"-->
                     <!--style="@style/TextTitle"/>-->
+                    <com.balysv.materialripple.MaterialRippleLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/size_ll_setting"
                         android:background="?selectableItemBackground"
-                        android:onClick="onClick"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -467,6 +498,12 @@
                         </LinearLayout>
 
                     </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                    <com.balysv.materialripple.MaterialRippleLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                     <!--rate-->
                     <LinearLayout
                         android:id="@+id/ll_rateapp"
@@ -518,6 +555,12 @@
                         </LinearLayout>
 
                     </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                    <com.balysv.materialripple.MaterialRippleLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                     <!--contact-->
                     <LinearLayout
                         android:id="@+id/ll_contact"
@@ -570,6 +613,12 @@
 
 
                     </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                    <com.balysv.materialripple.MaterialRippleLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
                     <!--moreapp-->
                     <LinearLayout
                         android:id="@+id/ll_moreapp"
@@ -622,6 +671,7 @@
 
 
                     </LinearLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
                 </LinearLayout>
 
             </android.support.v7.widget.CardView>

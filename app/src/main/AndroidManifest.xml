@@ -45,7 +45,7 @@
             android:name=".GuideConnectActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SearchActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

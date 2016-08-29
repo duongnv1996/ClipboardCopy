@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.widget.Toast;
 
 import com.duongkk.clipboardcopy.application.AppController;
 import com.duongkk.clipboardcopy.models.Message;
@@ -127,7 +126,7 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
                     mRoot.push().setValue(msg, new Firebase.CompletionListener() {
                         @Override
                         public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                            Toast.makeText(getBaseContext(), content, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), content, Toast.LENGTH_LONG).show();
                         }
                     });
                 }
