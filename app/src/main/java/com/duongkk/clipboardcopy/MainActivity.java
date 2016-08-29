@@ -24,13 +24,18 @@ import com.duongkk.clipboardcopy.service.ReceiverOff;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
 import com.duongkk.clipboardcopy.utils.SharedPref;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     Intent intent;
@@ -53,15 +58,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     };
 
 
+
+    private InterstitialAd mInterstitialAd;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if(checkSelfPermission(Manifest.permission.READ_PHONE_STATE)!= PackageManager.PERMISSION_GRANTED)
-//            requestPermissions(new String[]{Manifest.permission.READ_PHONE_STATE},100);
-//        }
+
         setContentView(R.layout.activity_main);
 
+
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,""));
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,""));
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         db = new DatabaseHandler(this);
         listMessages = new ArrayList<>();
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -123,7 +137,58 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        int theme = SharedPref.getInstance(this).getInt(Constant.KEY_THEME,  AppCompatDelegate.MODE_NIGHT_AUTO);
 //        applyTheme(theme);
 //        }
+
+
+//        Ads
+        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4447279115464296~4239207165");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4447279115464296/4099606366");
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+                //beginPlayingGame();
+
+            }
+        });
+
+        requestNewInterstitial();
+        mInterstitialAd.setAdListener(new AdListener(){
+            public void onAdLoaded(){
+                displayInterstitial();
+            }
+        });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
+
+    public void displayInterstitial() {
+        if (mInterstitialAd.isLoaded())
+         mInterstitialAd.show();
+
+    }
+
+    private void requestNewInterstitial() {
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+
+        mInterstitialAd.loadAd(adRequest);
+
+
+    }
+
+
+
+
+
+
 
     public void applyTheme(int theme) {
         getDelegate().setLocalNightMode(theme);

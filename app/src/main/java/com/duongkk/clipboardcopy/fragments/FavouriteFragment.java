@@ -16,6 +16,8 @@ import com.duongkk.clipboardcopy.adapters.MessageFavouriteAdapter;
 import com.duongkk.clipboardcopy.databases.DatabaseHandler;
 import com.duongkk.clipboardcopy.interfaces.CallBackFirebase;
 import com.duongkk.clipboardcopy.models.Message;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,9 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
     private  RecyclerView mRcvChat;
     private  static MessageFavouriteAdapter mAdapter;
     public   static List<Message> mListMessages;
-    private   LinearLayout mLayoutNotfound;
+    private   static LinearLayout mLayoutNotfound;
     private  DatabaseHandler mDb;
+    private AdView mAdView;
      View rootView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,16 +57,37 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
             mLayoutNotfound.setVisibility(View.GONE);
         }
         //  mRcvChat.setAdapter(new MessageFavouriteAdapter(getContext(),mListMessages , this));
+
+
+
+        mAdView = (AdView) view.findViewById(R.id.adView);
+        final AdRequest adRequest = new AdRequest.Builder()
+                .build()
+                ;
+
+        mAdView.loadAd(adRequest);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(mAdView!=null) mAdView.destroy();
+
+    }
+
+
 
     @Override
     public void onResume() {
         super.onResume();
+        if(mAdView!=null) mAdView.resume();
         if (mListMessages != null) {
           //  mListMessages.clear();
          //   mListMessages.addAll(mDb.getAllRows());
             mAdapter.notifyDataSetChanged();
-
+            if (mListMessages.size() > 0) {
+                mLayoutNotfound.setVisibility(View.GONE);
+            }
         }
     }
 

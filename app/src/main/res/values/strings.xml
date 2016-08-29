@@ -42,6 +42,26 @@
     <string name="night_mode_scheule">Night mode scheule</string>
     <string name="auto">Auto</string>
     <string name="search_for_any_message">Search for any message</string>
+    <string name="not_a_member_get_registered_now">Not a member? Get registered now!</string>
+    <string name="rate_copy_copy_on_play_store">Rate Copy Copy on Play Store</string>
+    <string name="your_5_star_rating_and_google_1_are_appreciated">Your 5-star rating and Google +1 are appreciated.</string>
+    <string name="contact_developer">Contact developer</string>
+    <string name="problem_question_drop_me_an_email_at_duongkk_dev_gmail_com">Problem? Question? Drop me an email at duongkk.dev@gmail.com</string>
+    <string name="more_apps">More apps</string>
+    <string name="if_you_like_this_app_you_may_want_to_check_out_my_other_apps">If you like this app you may want to check out my other apps.</string>
+    <string name="log_out">Log out</string>
+    <string name="delete_all_text_from_history">Delete all text from history</string>
+    <string name="delete_history">Delete history</string>
+    <string name="show_status_bar_icon_when_copy_copy_is_active">Show status bar icon when Copy Copy is active</string>
+    <string name="notify_when_active">Notify when active</string>
+    <string name="copy_copy_is_active">Copy Copy is active</string>
+    <string name="things_you_share_will_appear_here">Things you share will appear here</string>
+    <string name="nothing_shared">Nothing shared</string>
+    <string name="copy_copy_is_off">Copy Copy is off</string>
+    <string name="off">TURN OFF</string>
+    <string name="deleted">Deleted!</string>
+    <string name="success_reg">Register successfull. Please login to use service!</string>
+    <string name="right">Permission was not accepted. Please accept permission then try again!</string>
 
 
     <array name="item_long_click">

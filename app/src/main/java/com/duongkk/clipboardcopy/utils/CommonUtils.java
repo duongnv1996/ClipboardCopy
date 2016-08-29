@@ -477,7 +477,7 @@ public static void showNotification(Context context) {
     Intent intent = new Intent();
     intent.setAction(YES_ACTION);
     PendingIntent intentOff = PendingIntent.getBroadcast(context, 12345, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-    builder.addAction(R.drawable.ic_adb_black_24dp,"TURN OFF",intentOff);
+    builder.addAction(R.drawable.ic_adb_black_24dp,context.getString(R.string.off),intentOff);
 
     // builder.setStyle(NotificationCompat.InboxStyle)
 

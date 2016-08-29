@@ -110,7 +110,7 @@
             android:textColor="@color/white"
             android:onClick="onClick"
             android:textAllCaps="false"
-            android:text="Not a member? Get registered now!"
+            android:text="@string/not_a_member_get_registered_now"
             android:layout_marginTop="30dip"/>
         <ProgressBar
             android:id="@+id/progressBar"

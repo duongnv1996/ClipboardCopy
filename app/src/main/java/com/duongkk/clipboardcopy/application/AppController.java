@@ -5,6 +5,7 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.crittercism.app.Crittercism;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
 import com.duongkk.clipboardcopy.utils.SharedPref;
@@ -14,23 +15,22 @@ import com.firebase.client.Firebase;
  * Created by MyPC on 8/19/2016.
  */
 public class AppController extends MultiDexApplication {
-   static AppController instance;
+    static AppController instance;
      String imei;
-    String coppiedText="";
-    String url_root="https://clipboard-copy.firebaseio.com/";
-
-
+    String coppiedText = "";
+    String url_root = "https://clipboard-copy.firebaseio.com/";
     static {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        imei = CommonUtils.getImei(this);
+        Crittercism.initialize(getApplicationContext(), "4396502ea66c44f59904dc8f4bcab37400555300");
         Firebase.setAndroidContext(this);
-        if(!SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,"").equals("")){
-            url_root+=SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,"");
+        if (!SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, "").equals("")) {
+            url_root += SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, "");
         }
     }
 
@@ -39,10 +39,11 @@ public class AppController extends MultiDexApplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+
     }
 
     public static synchronized AppController getInstance() {
-        if(instance==null) instance = new AppController();
+        if (instance == null) instance = new AppController();
         return instance;
     }
 
@@ -58,11 +59,12 @@ public class AppController extends MultiDexApplication {
         return coppiedText;
     }
 
-    public void setCoppiedText(String coppiedText) {
+    public  void setCoppiedText(String coppiedText) {
         this.coppiedText = coppiedText;
     }
 
-    public  String getImei() {
+    public String getImei() {
+        imei = CommonUtils.getImei(this);
         return imei;
     }
 

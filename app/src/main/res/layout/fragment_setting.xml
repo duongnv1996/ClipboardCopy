@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?selectableItemBackground"
+    android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context="com.duongkk.clipboardcopy.fragments.SettingFragment">
@@ -80,13 +80,14 @@
                             <!--Content-->
 
                             <TextView
+                                android:id="@+id/tv_on"
                                 style="@style/TextMediumTitle"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
-                                android:text="Copy Copy is active" />
+                                android:text="@string/app_name" />
 
 
                             <android.support.v7.widget.SwitchCompat
@@ -230,13 +231,13 @@
                                         style="@style/TextMediumTitle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Notify when active" />
+                                        android:text="@string/notify_when_active" />
 
                                     <TextView
                                         style="@style/TextSmallContent"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Show status bar icon when Copy Copy is active" />
+                                        android:text="@string/show_status_bar_icon_when_copy_copy_is_active" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -296,13 +297,13 @@
                                         style="@style/TextMediumTitle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Delete history" />
+                                        android:text="@string/delete_history" />
 
                                     <TextView
                                         style="@style/TextSmallContent"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Delete all text from history" />
+                                        android:text="@string/delete_all_text_from_history" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -406,7 +407,7 @@
                                         style="@style/TextMediumTitle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Log out" />
+                                        android:text="@string/log_out" />
                                 </LinearLayout>
 
                             </LinearLayout>
@@ -544,13 +545,13 @@
                                     style="@style/TextMediumTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Rate Copy Copy on Play Store" />
+                                    android:text="@string/rate_copy_copy_on_play_store" />
 
                                 <TextView
                                     style="@style/TextSmallContent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Your 5-star rating and Google +1 are appreciated." />
+                                    android:text="@string/your_5_star_rating_and_google_1_are_appreciated" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -600,13 +601,13 @@
                                     style="@style/TextMediumTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Contact developer" />
+                                    android:text="@string/contact_developer" />
 
                                 <TextView
                                     style="@style/TextSmallContent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Problem? Question? Drop me an email at duongkk.dev@gmail.com" />
+                                    android:text="@string/problem_question_drop_me_an_email_at_duongkk_dev_gmail_com" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -658,13 +659,13 @@
                                     style="@style/TextMediumTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="More apps" />
+                                    android:text="@string/more_apps" />
 
                                 <TextView
                                     style="@style/TextSmallContent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="If you like this app you may want to check out my other apps." />
+                                    android:text="@string/if_you_like_this_app_you_may_want_to_check_out_my_other_apps" />
                             </LinearLayout>
 
                         </LinearLayout>

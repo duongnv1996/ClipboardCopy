@@ -59,7 +59,10 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     TextView mTvTheme;
     @Bind(R.id.cb_noti)
     CheckBox mCbNotify;
-    private Firebase mRoot;
+
+    @Bind(R.id.tv_on)
+    TextView mTvSW;
+     private Firebase mRoot;
     int choice;
     String[] themes;
 
@@ -88,7 +91,13 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         if(auth.getCurrentUser()!=null){
             mTvName.setText(auth.getCurrentUser().getUid().toString());
         }
-        mSwitchOn.setChecked(SharedPref.getInstance(getContext()).getBoolean(Constant.KEY_ON_SERVICE,true));
+        boolean on= SharedPref.getInstance(getContext()).getBoolean(Constant.KEY_ON_SERVICE,true);
+        if(on){
+            mTvSW.setText(getContext().getResources().getString(R.string.copy_copy_is_active));
+        }else{
+            mTvSW.setText(getContext().getResources().getString(R.string.copy_copy_is_off));
+        }
+        mSwitchOn.setChecked(on);
         mCbNotify.setChecked(SharedPref.getInstance(getContext()).getBoolean(Constant.KEY_NOTIFY,true));
 
         mSwitchOn.setOnCheckedChangeListener(this);
@@ -160,7 +169,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 mRoot.removeValue(new Firebase.CompletionListener() {
                     @Override
                     public void onComplete(FirebaseError firebaseError, Firebase firebase) {
-                        Toast.makeText(getContext(),"Deleted!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.deleted,Toast.LENGTH_SHORT).show();
                     }
                 });
                 break;
@@ -220,9 +229,12 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
             case R.id.sw_on:{
                 SharedPref.getInstance(getContext()).putBoolean(Constant.KEY_ON_SERVICE,b);
                 if(b){
+                    mTvSW.setText(getContext().getResources().getString(R.string.copy_copy_is_active));
                     ((MainActivity)getActivity()).startMyService();
                 }else{
                     ((MainActivity)getActivity()).stopMyService();
+                    mTvSW.setText(getContext().getResources().getString(R.string.copy_copy_is_off));
+
                 }
                 break;
             }

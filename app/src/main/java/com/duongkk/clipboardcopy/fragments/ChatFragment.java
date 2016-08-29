@@ -86,6 +86,12 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        txt="";
+    }
+
+    @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         mLayoutNotfound.setVisibility(View.GONE);
         Message msg = dataSnapshot.getValue(Message.class);
