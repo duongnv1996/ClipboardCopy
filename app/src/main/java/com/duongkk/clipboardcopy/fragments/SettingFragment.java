@@ -89,7 +89,12 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mLogout.setOnClickListener(this);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()!=null){
-            mTvName.setText(auth.getCurrentUser().getUid().toString());
+            String id = auth.getCurrentUser().getEmail();
+            id = id.replace(".", "");
+            id = id.replace("#", "");
+            id = id.replace("$", "");
+            id = id.replace("]", "");
+            mTvName.setText(id);
         }
         boolean on= SharedPref.getInstance(getContext()).getBoolean(Constant.KEY_ON_SERVICE,true);
         if(on){

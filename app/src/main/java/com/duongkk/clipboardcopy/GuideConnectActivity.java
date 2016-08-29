@@ -55,13 +55,15 @@ public class GuideConnectActivity extends AppCompatActivity implements View.OnCl
         ButterKnife.bind(this);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser()!=null){
-            mTvCode.setText(String.format(getString(R.string.code_user_setting),auth.getCurrentUser().getUid().toString()));
+            String id = auth.getCurrentUser().getEmail();
+            id = id.replace(".", "");
+            id = id.replace("#", "");
+            id = id.replace("$", "");
+            id = id.replace("]", "");
+            mTvCode.setText(String.format(getString(R.string.code_user_setting),id));
         }
        // mImgGuide.startAnimation(AnimationUtils.loadAnimation(this,R.anim.scale_up));
        // mTvCode.startAnimation(AnimationUtils.loadAnimation(this,R.anim.fade_in));
-
-
-
 //        Ads
         MobileAds.initialize(getApplicationContext(),"ca-app-pub-4447279115464296~4239207165");
 
@@ -88,7 +90,6 @@ public class GuideConnectActivity extends AppCompatActivity implements View.OnCl
     public void displayInterstitial() {
         if (mInterstitialAd.isLoaded())
             mInterstitialAd.show();
-
     }
 
     private void requestNewInterstitial() {

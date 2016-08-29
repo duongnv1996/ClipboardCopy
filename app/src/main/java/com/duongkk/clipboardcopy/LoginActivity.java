@@ -151,7 +151,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             .content(task.getException().getMessage())
                                             .show();
                                 } else {
-                                    SharedPref.getInstance(getBaseContext()).putString(Constant.KEY_URL_ID, "users/" + mAuth.getCurrentUser().getUid() + "/");
+                                    String id = getGreatIdString();
+
+                                    SharedPref.getInstance(getBaseContext()).putString(Constant.KEY_URL_ID, "users/" + id + "/");
                                     Intent intent = new Intent(LoginActivity.this, GuideConnectActivity.class);
                                     intent.putExtra(Constant.KEY_FINISH, false);
                                     startActivity(intent);
@@ -164,6 +166,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
+    }
+
+    private String getGreatIdString() {
+        String id = mAuth.getCurrentUser().getEmail();
+        id = id.replace(".", "");
+        id = id.replace("#", "");
+        id = id.replace("$", "");
+        id = id.replace("]", "");
+        return id;
     }
 
     @Override
