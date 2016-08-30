@@ -20,6 +20,8 @@ import com.duongkk.clipboardcopy.application.AppController;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
 import com.duongkk.clipboardcopy.utils.SharedPref;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ImageView mImgLogo;
 
     private FirebaseAuth mAuth;
+    private Firebase mRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,13 +154,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                             .content(task.getException().getMessage())
                                             .show();
                                 } else {
-                                    String id = getGreatIdString();
+                                    final String id = getGreatIdString();
 
-                                    SharedPref.getInstance(getBaseContext()).putString(Constant.KEY_URL_ID, "users/" + id + "/");
-                                    Intent intent = new Intent(LoginActivity.this, GuideConnectActivity.class);
-                                    intent.putExtra(Constant.KEY_FINISH, false);
-                                    startActivity(intent);
-                                    finish();
+                                    mRoot = new Firebase(Constant.URL_ROOT_FINAL+"users/" + id + "/");
+                                    mRoot.child("todo").setValue("1", new Firebase.CompletionListener() {
+                                        @Override
+                                        public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                                            if(firebaseError==null){
+                                                SharedPref.getInstance(getBaseContext()).putString(Constant.KEY_URL_ID, "users/" + id + "/");
+
+                                                Intent intent = new Intent(LoginActivity.this, GuideConnectActivity.class);
+                                                intent.putExtra(Constant.KEY_FINISH, false);
+                                                startActivity(intent);
+                                                finish();
+                                            }else{
+                                                new MaterialDialog.Builder(LoginActivity.this)
+                                                        .title(R.string.auth_failt)
+                                                        .content(R.string.check_connect)
+                                                        .show();
+                                            }
+                                        }
+                                    });
+
                                 }
                             }
                         });

@@ -80,15 +80,20 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
 
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        if (clipboard != null) {
-            Message message = dataSnapshot.getValue(Message.class);
-            contentFromServer = message.getContent();
-            clipboard.setText(message.getContent());
-            Intent intent = new Intent();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(Constant.KEY_MSG, message);
-            intent.putExtra(Constant.KEY_BUNDLE, bundle);
-            sendBroadcast(intent);
+        try {
+
+            if (clipboard != null) {
+                Message message = dataSnapshot.getValue(Message.class);
+                contentFromServer = message.getContent();
+                clipboard.setText(message.getContent());
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(Constant.KEY_MSG, message);
+                intent.putExtra(Constant.KEY_BUNDLE, bundle);
+                sendBroadcast(intent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

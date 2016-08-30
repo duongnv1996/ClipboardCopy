@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.duongkk.clipboardcopy.application.AppController;
 import com.duongkk.clipboardcopy.utils.Constant;
+import com.duongkk.clipboardcopy.utils.SharedPref;
+import com.firebase.client.Firebase;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -29,7 +31,7 @@ public class GuideConnectActivity extends AppCompatActivity implements View.OnCl
     ImageView mImgGuide;
     boolean finishable;
     private InterstitialAd mInterstitialAd;
-
+    private Firebase mRoot;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -84,6 +86,10 @@ public class GuideConnectActivity extends AppCompatActivity implements View.OnCl
                 //displayInterstitial();
             }
         });
+
+
+        mRoot = new Firebase(Constant.URL_ROOT_FINAL+ SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,""));
+        mRoot.child("todo").setValue("1");
     }
 
 

@@ -93,18 +93,24 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
 
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        mLayoutNotfound.setVisibility(View.GONE);
-        Message msg = dataSnapshot.getValue(Message.class);
+        try {
 
-        if(msg!=null && !msg.getContent().equals(txt)){
-            txt = msg.getContent();
-            msg.setCode(dataSnapshot.getKey());
-            if(msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
-            mListMessages.add(msg);
-            mAdapter.notifyItemInserted(mAdapter.getItemCount()-1);
-            mRcvChat.smoothScrollToPosition(mAdapter.getItemCount()-1);
+
+            mLayoutNotfound.setVisibility(View.GONE);
+            Message msg = dataSnapshot.getValue(Message.class);
+
+            if (msg != null && !msg.getContent().equals(txt)) {
+                txt = msg.getContent();
+                msg.setCode(dataSnapshot.getKey());
+                if (msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
+                mListMessages.add(msg);
+                mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
+                mRcvChat.smoothScrollToPosition(mAdapter.getItemCount() - 1);
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
     }
 
     @Override

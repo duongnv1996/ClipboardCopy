@@ -113,6 +113,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 } else {
                                     //Firebase root = new Firebase(Constant.URL_ROOT + "users/"+mAuth.getCurrentUser().getUid()+"/");
 
+
                                             Toast.makeText(RegisterActivity.this, R.string.success_reg, Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent();
                                             intent.putExtra(Constant.KEY_EMAIL, email);
