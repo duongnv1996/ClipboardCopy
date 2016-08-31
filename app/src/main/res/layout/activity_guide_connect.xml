@@ -46,6 +46,16 @@
             android:layout_margin="@dimen/margin_medium"
             android:gravity="center"
             android:text="@string/please_enter_your_code_to_the_computer_to_complete_the_connection" />
+        <TextView
+            android:id="@+id/link"
+            style="@style/TextSmallContent"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:gravity="center"
+            android:onClick="onClick"
+            android:text="@string/tip" />
 
         <Button
             android:id="@+id/btn_ok"
@@ -54,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="OK"
             android:background="@drawable/selector_btn_reg"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="30dp"
             />
     </LinearLayout>
 

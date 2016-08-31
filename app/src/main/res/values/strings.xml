@@ -63,7 +63,7 @@
     <string name="success_reg">Register successfull. Please login to use service!</string>
     <string name="right">Permission was not accepted. Please accept permission then try again!</string>
     <string name="check_connect">Please check your connection then try again!</string>
-
+    <string name="tip"> *You can download the rest of the clients at: \n http://copycopy.16mb.com</string>
 
     <array name="item_long_click">
         <item name="copy">Copy Text</item>

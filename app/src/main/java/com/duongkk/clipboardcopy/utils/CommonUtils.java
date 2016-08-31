@@ -151,6 +151,13 @@ public class CommonUtils {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(date);
     }
+
+    public static void openUrl(Context context){
+        String url = "http://copycopy.16mb.com";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        context.startActivity(i);
+    }
     public static String getImei(Context context) {
         TelephonyManager telephonyManager = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         return telephonyManager.getDeviceId();

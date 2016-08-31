@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.duongkk.clipboardcopy.application.AppController;
+import com.duongkk.clipboardcopy.utils.CommonUtils;
 import com.duongkk.clipboardcopy.utils.Constant;
 import com.duongkk.clipboardcopy.utils.SharedPref;
 import com.firebase.client.Firebase;
@@ -29,6 +30,8 @@ public class GuideConnectActivity extends AppCompatActivity implements View.OnCl
     TextView mTvCode;
     @Bind(R.id.img_guide)
     ImageView mImgGuide;
+
+
     boolean finishable;
     private InterstitialAd mInterstitialAd;
     private Firebase mRoot;
@@ -110,12 +113,22 @@ public class GuideConnectActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-       if(finishable) {
-           displayInterstitial();
-           finish();
-       }else{
-           startActivity(new Intent(this,MainActivity.class));
-           finish();
-       }
+        switch (view.getId()){
+            case R.id.link:{
+                CommonUtils.openUrl(this);
+                break;
+            }
+
+            case R.id.btn_ok :{
+                if(finishable) {
+                    displayInterstitial();
+                    finish();
+                }else{
+                    startActivity(new Intent(this,MainActivity.class));
+                    finish();
+                }
+            }
+        }
+
     }
 }
