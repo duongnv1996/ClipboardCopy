@@ -481,10 +481,10 @@ public static void showNotification(Context context) {
     builder.setContentTitle(context.getString(R.string.app_name));
     builder.setContentText(context.getString(R.string.active));
     builder.setAutoCancel(false).setOngoing(true);
-    Intent intent = new Intent();
-    intent.setAction(YES_ACTION);
-    PendingIntent intentOff = PendingIntent.getBroadcast(context, 12345, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-    builder.addAction(R.drawable.ic_adb_black_24dp,context.getString(R.string.off),intentOff);
+//    Intent intent = new Intent();
+//    intent.setAction(YES_ACTION);
+//    PendingIntent intentOff = PendingIntent.getBroadcast(context, 12345, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//    builder.addAction(R.drawable.ic_adb_black_24dp,context.getString(R.string.off),intentOff);
 
     // builder.setStyle(NotificationCompat.InboxStyle)
 

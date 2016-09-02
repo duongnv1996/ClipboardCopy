@@ -53,19 +53,14 @@
 <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     app:cardCornerRadius="0dp"
     app:cardBackgroundColor="@color/white"
     app:cardPreventCornerOverlap="false"
-    android:gravity="center"
-    android:layout_marginTop="@dimen/margin_small"
-    app:contentPadding="0dp"
-    app:cardElevation="20dp">
+    android:gravity="center">
     <LinearLayout
         android:id="@+id/ll_send"
-        android:elevation="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:paddingLeft="@dimen/margin_small"
 
@@ -76,7 +71,7 @@
             android:textSize="@dimen/text_medium"
             android:id="@+id/edt_chat"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="@string/type_your_message_here"
             android:layout_weight="1" />
 
@@ -88,14 +83,11 @@
             app:fab_elevationCompat="5dp"
             android:layout_marginRight="@dimen/margin_medium"
             android:layout_marginLeft="@dimen/margin_medium"
-            android:src="@drawable/fab_send"
+            android:src="@drawable/send_n"
             app:fab_size="mini"
-            app:fab_showAnimation="@anim/scale_up"
-            app:fab_hideAnimation="@anim/scale_down"
             app:fab_colorNormal="@color/colorPrimary"
             app:fab_colorPressed="@color/colorPrimaryDark"
             app:fab_colorRipple="@color/material_blue_100"
-            app:fab_showShadow="true"
             />
     </LinearLayout>
     <!--<View-->
