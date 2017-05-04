@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setOffscreenPageLimit(3);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -140,25 +141,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 //        Ads
-        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4447279115464296~4239207165");
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-4447279115464296/4099606366");
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                requestNewInterstitial();
-                //beginPlayingGame();
-
-            }
-        });
-
-        requestNewInterstitial();
-        mInterstitialAd.setAdListener(new AdListener(){
-            public void onAdLoaded(){
-                displayInterstitial();
-            }
-        });
+//        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4447279115464296~4239207165");
+//
+//        mInterstitialAd = new InterstitialAd(this);
+//        mInterstitialAd.setAdUnitId("ca-app-pub-4447279115464296/4099606366");
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdClosed() {
+//                requestNewInterstitial();
+//                //beginPlayingGame();
+//
+//            }
+//        });
+//
+//        requestNewInterstitial();
+//        mInterstitialAd.setAdListener(new AdListener(){
+//            public void onAdLoaded(){
+//                displayInterstitial();
+//            }
+//        });
     }
 
     @Override

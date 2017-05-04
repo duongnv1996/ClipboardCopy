@@ -65,7 +65,7 @@
     <string name="right">Ứng dụng chưa được cấp quyền truy cập. Vui lòng cấp quyền trong cài đặt ứng dụng và thử lại</string>
     <string name="check_connect">Vui lòng kiểm tra kết nối đường truyền và thử lại sau!</string>
     <string name="tip"> *Bạn có thể download phần mềm Copy Copy cho hệ điều hành khác tại : \n http://copycopy.16mb.com</string>
-
+    <string name="more_item">Xuống cuối</string>
 
     <array name="item_long_click">
         <item name="copy">Copy văn bản</item>

@@ -2,13 +2,16 @@ package com.duongkk.clipboardcopy.service;
 
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.widget.Toast;
 
+import com.duongkk.clipboardcopy.R;
 import com.duongkk.clipboardcopy.application.AppController;
 import com.duongkk.clipboardcopy.models.Message;
 import com.duongkk.clipboardcopy.utils.CommonUtils;
@@ -19,11 +22,12 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
 /**
  * Created by MyPC on 7/29/2016.
  */
-public class ClipboardListener extends Service implements ChildEventListener, ClipboardManager.OnPrimaryClipChangedListener {
+public class ClipboardListener extends Service implements ChildEventListener, ClipboardManager.OnPrimaryClipChangedListener, ValueEventListener {
     ClipboardManager clipboard;
     private Firebase mRoot;
     private String contentFromServer;
@@ -37,6 +41,7 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
         RLog.e(SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, ""));
         mRoot = new Firebase(Constant.URL_ROOT_FINAL + SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, ""));
         mRoot.addChildEventListener(this);
+        mRoot.addListenerForSingleValueEvent(this);
         notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
@@ -78,6 +83,7 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
         return null;
     }
 
+    boolean timeToNotify= false;
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         try {
@@ -85,15 +91,30 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
             if (clipboard != null) {
                 Message message = dataSnapshot.getValue(Message.class);
                 contentFromServer = message.getContent();
-                clipboard.setText(message.getContent());
+                clipboard.setPrimaryClip(ClipData.newPlainText("msg",message.getContent()));  // TODO: 5/5/2017 change from settext to clipdata because deprecated
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(Constant.KEY_MSG, message);
                 intent.putExtra(Constant.KEY_BUNDLE, bundle);
                 sendBroadcast(intent);
+               if(timeToNotify) notificationWhenCopying(message);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    private void notificationWhenCopying(Message message) {
+        int option = SharedPref.getInstance(getApplicationContext()).getInt(Constant.KEY_NOTIFY_WHEN_COPIED,0);
+        switch (option){
+            case 1:{
+                Toast.makeText(getApplicationContext(),String.format(getString(R.string.notification_copied),message.getContent()),Toast.LENGTH_SHORT).show();
+                break;
+            }
+            case 2:{
+                CommonUtils.createNotificationWithMsg(this,String.format(getString(R.string.notification_copied),message.getContent()));
+                break;
+            }
         }
     }
 
@@ -110,6 +131,11 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
     @Override
     public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
+    }
+   // addListenerForSingleValueEvent
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        timeToNotify = true;
     }
 
     @Override

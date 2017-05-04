@@ -47,7 +47,9 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
         //  getList();
         mRcvChat = (RecyclerView) view.findViewById(R.id.rcv_chat);
         mRcvChat.setHasFixedSize(true);
-        mRcvChat.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setStackFromEnd(true);
+        mRcvChat.setLayoutManager(layoutManager);
         mListMessages = new ArrayList<>();
         mListMessages.addAll(mDb.getAllRows());
         mAdapter = new MessageFavouriteAdapter(getContext(), mListMessages, this);

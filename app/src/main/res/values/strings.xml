@@ -10,7 +10,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="type_your_message_here">Type your message here...</string>
-    <string name="coppied">Coppied!</string>
+    <string name="coppied">Copied!</string>
     <string name="message">Message</string>
     <string name="register">Register</string>
     <string name="forgot_your_password">Forgot your password?</string>
@@ -64,7 +64,16 @@
     <string name="right">Permission was not accepted. Please accept permission then try again!</string>
     <string name="check_connect">Please check your connection then try again!</string>
     <string name="tip"> *You can download the rest of the clients at: \n http://copycopy.16mb.com</string>
+    <string name="more_item">Last message</string>
+    <string name="notify_when_copied">Notify when copying</string>
+    <string name="enabled_notification_copying">Enabled notification when copying text</string>
+    <string name="notification_copied">Copied message : %s</string>
 
+    <array name="item_noti">
+        <item name="turn_off">Turn Off</item>
+        <item name="alert">Show alert message</item>
+        <item name="fav">Show notification on status bar</item>
+    </array>
     <array name="item_long_click">
         <item name="copy">Copy Text</item>
         <item name="share">Share Text</item>

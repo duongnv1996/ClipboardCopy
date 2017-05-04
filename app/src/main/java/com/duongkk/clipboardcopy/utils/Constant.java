@@ -17,6 +17,7 @@ public class Constant {
     public final static String KEY_FINISH ="finish";
 
     public final static String KEY_NOTIFY ="notify";
+    public final static String KEY_NOTIFY_WHEN_COPIED ="notify_copied";
     public final static String KEY_THEME ="theme";
 
     public final static int CODE_REG = 1;

@@ -1,14 +1,19 @@
 package com.duongkk.clipboardcopy.fragments;
 
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.AppCompatSpinner;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -34,7 +39,7 @@ import me.grantland.widget.AutofitHelper;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettingFragment extends BaseFragment implements View.OnClickListener,OnCheckedChangeListener{
+public class SettingFragment extends BaseFragment implements View.OnClickListener,OnCheckedChangeListener,AdapterView.OnItemSelectedListener{
 
      private LinearLayout mLogout;
     @Bind(R.id.ll_on)
@@ -62,10 +67,19 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
 
     @Bind(R.id.tv_on)
     TextView mTvSW;
+
+    @Bind(R.id.ll_notification_coppied)
+    LinearLayout mLayoutNotiCopied;
+    @Bind(R.id.sp_noti)
+    AppCompatSpinner spOptions;
+    private String[] mOptionsNoti;
+   private ArrayAdapter<String> mAdapterOption;
+
      private Firebase mRoot;
     int choice;
     String[] themes;
-
+    NotificationManager notificationManager;
+    int posNotiDefault;
     public SettingFragment() {
         // Required empty public constructor
     }
@@ -75,6 +89,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         super.onCreate(savedInstanceState);
         mRoot = new Firebase(Constant.URL_ROOT_FINAL+SharedPref.getInstance(getContext()).getString(Constant.KEY_URL_ID,""));
         themes = getContext().getResources().getStringArray(R.array.item_theme);
+        notificationManager  = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
     @Override
@@ -115,7 +130,14 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mLayoutRate.setOnClickListener(this);
         mlayoutContact.setOnClickListener(this);
         mLayoutMoreApp.setOnClickListener(this);
-
+        mLayoutNotiCopied.setOnClickListener(this);
+        mOptionsNoti = getContext().getResources().getStringArray(R.array.item_noti);
+        mAdapterOption = new ArrayAdapter<String>(getContext(),R.layout.spinner_item,mOptionsNoti);
+        mAdapterOption.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spOptions.setAdapter(mAdapterOption);
+        posNotiDefault = SharedPref.getInstance(getContext()).getInt(Constant.KEY_NOTIFY_WHEN_COPIED,0);
+        spOptions.setSelection(posNotiDefault);
+        spOptions.setOnItemSelectedListener(this);
 
 /*        night mode
         int modeType;
@@ -127,6 +149,9 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mTvTheme.setText(themes[theme]);
 
         */
+
+
+
 
     }
 
@@ -177,6 +202,10 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                         Toast.makeText(getContext(), R.string.deleted,Toast.LENGTH_SHORT).show();
                     }
                 });
+                break;
+            }
+            case R.id.ll_notification_coppied:{
+                spOptions.performClick();
                 break;
             }
             case R.id.ll_theme:{
@@ -251,9 +280,38 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                     //((MainActivity)getActivity()).startMyService();
                 }else{
                     //((MainActivity)getActivity()).stopMyService();
+                    notificationManager.cancel(1);      // 1 is id of notification in CommonUtils.java
                 }
                 break;
             }
         }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+        if(pos == posNotiDefault) return;
+        SharedPref.getInstance(getContext()).putInt(Constant.KEY_NOTIFY_WHEN_COPIED,pos);
+
+        switch (pos){
+            case 0:{
+
+                notificationManager.cancel(2);
+                return;
+            }
+            case 1:{
+                Toast.makeText(getContext(),getString(R.string.enabled_notification_copying),Toast.LENGTH_LONG).show();
+                return;
+            }
+            case 2:{
+                CommonUtils.createNotificationWithMsg(getContext(),getString(R.string.enabled_notification_copying));
+                return;
+            }
+        }
+    }
+
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }

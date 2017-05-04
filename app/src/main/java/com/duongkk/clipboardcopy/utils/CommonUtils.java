@@ -500,7 +500,22 @@ public static void showNotification(Context context) {
     notificationManager.notify(1, builder.build());
 }
 
-
+public static void createNotificationWithMsg(Context context, String msg){
+    android.support.v7.app.NotificationCompat.Builder builder = new android.support.v7.app.NotificationCompat.Builder(context);
+    builder.setSmallIcon(R.mipmap.ic_launcher);
+    builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher));
+    builder.setContentTitle(context.getString(R.string.app_name));
+    builder.setContentText(msg);
+    builder.setAutoCancel(true).setOngoing(false);
+    TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+    stackBuilder.addParentStack(MainActivity.class);
+    Intent intentMain = new Intent(context,MainActivity.class);
+    stackBuilder.addNextIntent(intentMain);
+    PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_CANCEL_CURRENT);
+    builder.setContentIntent(pendingIntent);
+    NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    notificationManager.notify(2, builder.build());
+}
     public static String getStringImage(Bitmap bmp){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
