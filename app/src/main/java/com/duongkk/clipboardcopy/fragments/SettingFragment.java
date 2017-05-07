@@ -48,7 +48,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
     SwitchCompat mSwitchOn;
     @Bind(R.id.tv_name)
     TextView mTvName;
-
+    @Bind(R.id.ll_upgrade)
+    LinearLayout mLayoutUpgrade;
     @Bind(R.id.ll_delete)
     LinearLayout mLayoutDelete;
     LinearLayout mLayoutConnect;
@@ -124,6 +125,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
         mCbNotify.setOnCheckedChangeListener(this);
         mLayoutOn.setOnClickListener(this);
         mLayoutDelete.setOnClickListener(this);
+        mLayoutUpgrade.setOnClickListener(this);
         mLayoutConnect.setOnClickListener(this);
         mLayoutNotify.setOnClickListener(this);
         mLayoutTheme.setOnClickListener(this);
@@ -182,7 +184,7 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                 break;
             }
             case R.id.ll_rateapp:{
-                CommonUtils.launchMarket(getContext());
+                CommonUtils.launchMarket(getContext(),getContext().getPackageName());
                 break;
             }
             case R.id.ll_notification:{
@@ -202,6 +204,10 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                         Toast.makeText(getContext(), R.string.deleted,Toast.LENGTH_SHORT).show();
                     }
                 });
+                break;
+            }
+            case R.id.ll_upgrade:{
+                CommonUtils.launchMarket(getContext(),getContext().getPackageName()+"pro");
                 break;
             }
             case R.id.ll_notification_coppied:{

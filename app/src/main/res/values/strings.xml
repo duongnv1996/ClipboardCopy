@@ -64,10 +64,12 @@
     <string name="right">Permission was not accepted. Please accept permission then try again!</string>
     <string name="check_connect">Please check your connection then try again!</string>
     <string name="tip"> *You can download the rest of the clients at: \n http://copycopy.16mb.com</string>
-    <string name="more_item">Last message</string>
+    <string name="more_item">↓ Last message</string>
     <string name="notify_when_copied">Notify when copying</string>
     <string name="enabled_notification_copying">Enabled notification when copying text</string>
     <string name="notification_copied">Copied message : %s</string>
+    <string name="remove_ads_more_theme_style"><![CDATA[Remove Ads & more themes style]]></string>
+    <string name="upgrade_pro_version">Upgrade pro version</string>
 
     <array name="item_noti">
         <item name="turn_off">Turn Off</item>

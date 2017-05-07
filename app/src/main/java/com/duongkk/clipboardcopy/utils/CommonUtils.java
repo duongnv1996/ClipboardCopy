@@ -28,8 +28,8 @@ import java.text.SimpleDateFormat;
  */
 public class CommonUtils {
     public static final String YES_ACTION ="YES_ACTION" ;
-    public static void launchMarket(Context context) {
-        Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+    public static void launchMarket(Context context,String packageApp) {
+        Uri uri = Uri.parse("market://details?id=" + packageApp);
         Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);
         try {
             context.startActivity(myAppLinkToMarket);

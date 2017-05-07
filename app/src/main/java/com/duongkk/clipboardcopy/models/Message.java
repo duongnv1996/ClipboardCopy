@@ -3,9 +3,12 @@ package com.duongkk.clipboardcopy.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by MyPC on 8/19/2016.
  */
+
 public class Message implements Parcelable {
     String code;
     String id;

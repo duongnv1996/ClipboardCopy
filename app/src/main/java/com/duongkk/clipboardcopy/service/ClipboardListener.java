@@ -97,7 +97,13 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
                 bundle.putParcelable(Constant.KEY_MSG, message);
                 intent.putExtra(Constant.KEY_BUNDLE, bundle);
                 sendBroadcast(intent);
-               if(timeToNotify) notificationWhenCopying(message);
+               if(timeToNotify){
+                   if( !itemNoNeedToNotify) {
+                       notificationWhenCopying(message);
+                   }else{
+                       itemNoNeedToNotify = false;
+                   }
+               }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -143,6 +149,7 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
 
     }
 
+    boolean itemNoNeedToNotify = false;
     @Override
     public void onPrimaryClipChanged() {
         if (SharedPref.getInstance(this).getBoolean(Constant.KEY_ON_SERVICE, true)) {
@@ -154,12 +161,19 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
                     msg.setContent(content);
                     msg.setDate(CommonUtils.getCurrentTime());
                     msg.setId(CommonUtils.getImei(getBaseContext()));
+                    itemNoNeedToNotify = true;
                     mRoot.push().setValue(msg, new Firebase.CompletionListener() {
                         @Override
                         public void onComplete(FirebaseError firebaseError, Firebase firebase) {
                             //Toast.makeText(getBaseContext(), content, Toast.LENGTH_LONG).show();
                         }
                     });
+
+
+//                    Remove Notification from status bar
+                    if(SharedPref.getInstance(getApplicationContext()).getInt(Constant.KEY_NOTIFY_WHEN_COPIED,0)==2){
+                        ( (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE) ).cancel(2);
+                    }
                 }
                 mPreviousText = content;
             }

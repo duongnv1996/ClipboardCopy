@@ -1,5 +1,6 @@
 package com.duongkk.clipboardcopy.fragments;
 
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -55,6 +56,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     private LinearLayout mLayoutNotfound;
 
     private String txt="";
+    private ProgressDialog mProgressBar;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +116,10 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
 
             }
         });
+
+//        mProgressBar = new ProgressDialog(getContext());
+//        mProgressBar.setMessage(getString(R.string.com_facebook_loading));
+//        mProgressBar.show();
     }
 
     public static boolean isAtBottom(RecyclerView recyclerView) {
@@ -154,6 +160,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
         try {
             Message msg = dataSnapshot.getValue(Message.class);
             if (msg != null && !msg.getContent().equals(txt)) {
+                mLayoutNotfound.setVisibility(View.GONE);
                 txt = msg.getContent();
                 msg.setCode(dataSnapshot.getKey());
                 if (msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
@@ -183,9 +190,16 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         mLoading.setVisibility(View.GONE);
-        mLayoutNotfound.setVisibility(View.GONE);
+     //   mProgressBar.hide();
 
 
+    }
+
+    @Override
+    public void onStop() {
+      //  if(mProgressBar.isShowing()) mProgressBar.hide();
+
+        super.onStop();
     }
 
     @Override
