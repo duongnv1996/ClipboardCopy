@@ -15,6 +15,7 @@ public class Constant {
     public final static String KEY_URL_ID ="url_id";
     public final static String KEY_ON_SERVICE ="service_on";
     public final static String KEY_FINISH ="finish";
+    public final static String KEY_DIALOG_UPDATE_OPENED ="dialog_update_open";
 
     public final static String KEY_NOTIFY ="notify";
     public final static String KEY_NOTIFY_WHEN_COPIED ="notify_copied";

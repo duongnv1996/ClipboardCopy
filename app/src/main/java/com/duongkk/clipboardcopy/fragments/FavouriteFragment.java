@@ -1,6 +1,7 @@
 package com.duongkk.clipboardcopy.fragments;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,18 +47,19 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         //  getList();
         mRcvChat = (RecyclerView) view.findViewById(R.id.rcv_chat);
+        mLayoutNotfound = (LinearLayout) view.findViewById(R.id.ll_notfound);
         mRcvChat.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setStackFromEnd(true);
         mRcvChat.setLayoutManager(layoutManager);
         mListMessages = new ArrayList<>();
-        mListMessages.addAll(mDb.getAllRows());
         mAdapter = new MessageFavouriteAdapter(getContext(), mListMessages, this);
         mRcvChat.setAdapter(mAdapter);
-        mLayoutNotfound = (LinearLayout) view.findViewById(R.id.ll_notfound);
-        if (mListMessages.size() > 0) {
-            mLayoutNotfound.setVisibility(View.GONE);
-        }
+        new FavouriteAsyn() .execute();
+
+
+
+
         //  mRcvChat.setAdapter(new MessageFavouriteAdapter(getContext(),mListMessages , this));
 
 
@@ -116,5 +118,23 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
     public void update(List<Message> msgs) {
         super.update(msgs);
 
+    }
+
+    class  FavouriteAsyn extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mListMessages.addAll(mDb.getAllRows());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (mListMessages.size() > 0) {
+                mLayoutNotfound.setVisibility(View.GONE);
+                mAdapter.notifyDataSetChanged();
+            }
+        }
     }
 }

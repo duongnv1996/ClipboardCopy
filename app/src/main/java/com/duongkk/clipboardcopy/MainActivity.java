@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.duongkk.clipboardcopy.databases.DatabaseHandler;
 import com.duongkk.clipboardcopy.fragments.ChatFragment;
 import com.duongkk.clipboardcopy.fragments.FavouriteFragment;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private InterstitialAd mInterstitialAd;
-
+    private MaterialDialog mDialogUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-
+        mDialogUpdate =new MaterialDialog.Builder(this)
+                .title(R.string.title_update)
+                .content(getString(R.string.msg_update))
+                .positiveText(getString(R.string.dimiss))
+                .positiveColor(Color.GRAY)
+                .build();
+        if(!SharedPref.getInstance(this).getBoolean(Constant.KEY_DIALOG_UPDATE_OPENED,false)){
+            mDialogUpdate.show();
+            SharedPref.getInstance(this).putBoolean(Constant.KEY_DIALOG_UPDATE_OPENED,true);
+        }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, SharedPref.getInstance(this).getString(Constant.KEY_URL_ID,""));
@@ -83,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
- //       mViewPager.setOffscreenPageLimit(3);
+//        mViewPager.setOffscreenPageLimit(3);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -141,25 +152,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 //        Ads
-//        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4447279115464296~4239207165");
-//
-//        mInterstitialAd = new InterstitialAd(this);
-//        mInterstitialAd.setAdUnitId("ca-app-pub-4447279115464296/4099606366");
-//        mInterstitialAd.setAdListener(new AdListener() {
-//            @Override
-//            public void onAdClosed() {
-//                requestNewInterstitial();
-//                //beginPlayingGame();
-//
-//            }
-//        });
-//
-//        requestNewInterstitial();
-//        mInterstitialAd.setAdListener(new AdListener(){
-//            public void onAdLoaded(){
-//                displayInterstitial();
-//            }
-//        });
+        MobileAds.initialize(getApplicationContext(),"ca-app-pub-4447279115464296~4239207165");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4447279115464296/4099606366");
+        mInterstitialAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                requestNewInterstitial();
+                //beginPlayingGame();
+
+            }
+        });
+
+        requestNewInterstitial();
+        mInterstitialAd.setAdListener(new AdListener(){
+            public void onAdLoaded(){
+                displayInterstitial();
+            }
+        });
     }
 
     @Override
@@ -185,11 +196,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-
-
-
-
+    @Override
+    protected void onStop() {
+        if(mDialogUpdate.isShowing()) mDialogUpdate.hide();
+        super.onStop();
+    }
 
     public void applyTheme(int theme) {
         getDelegate().setLocalNightMode(theme);

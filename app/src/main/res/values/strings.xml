@@ -70,6 +70,11 @@
     <string name="notification_copied">Copied message : %s</string>
     <string name="remove_ads_more_theme_style"><![CDATA[Remove Ads & more themes style]]></string>
     <string name="upgrade_pro_version">Upgrade pro version</string>
+    <string name="title_update">New Update</string>
+    <string name="msg_update"><![CDATA[ * Add notification when copying text option
+                                                                            * Add upgrade pro version option\n* Increase performance & fix issues]]>
+                                                         </string>
+    <string name="dimiss">Dismiss</string>
 
     <array name="item_noti">
         <item name="turn_off">Turn Off</item>

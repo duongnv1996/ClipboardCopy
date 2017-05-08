@@ -13,6 +13,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
         mEdtMessage.setOnClickListener(this);
         mRoot.addChildEventListener(this);
         mRoot.addListenerForSingleValueEvent(this);
+//        new ChatAsynTask().execute();
         mLoading.getIndeterminateDrawable().setColorFilter(ResourcesCompat.getColor(getResources(),R.color.colorPrimary,null), PorterDuff.Mode.MULTIPLY);
         mRcvChat.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -171,6 +173,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
             }
         }catch (Exception e){
             e.printStackTrace();
+            Log.e("error",dataSnapshot.toString());
         }
     }
 
@@ -258,7 +261,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
         });
     }
 
-    public class ChatAsynTask extends AsyncTask<Void,Void,Void>{
+    public class ChatAsynTask extends AsyncTask<Void,Boolean,Void>{
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -271,11 +274,12 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
                             txt = msg.getContent();
                             msg.setCode(dataSnapshot.getKey());
                             if (msg.getId().equals(AppController.getInstance().getImei())) msg.setClient(true);
-                        //    mListMessages.add(msg);
-                         //   publishProgress(null);
+                            mListMessages.add(msg);
+                            publishProgress(false);
                         }
                     }catch (Exception e){
                         e.printStackTrace();
+                        Log.e("error",dataSnapshot.toString());
                     }
                 }
 
@@ -300,13 +304,29 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
                 }
             });
 
+            mRoot.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    publishProgress(true);
+                }
+
+                @Override
+                public void onCancelled(FirebaseError firebaseError) {
+
+                }
+            });
+
             return null;
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
+        protected void onProgressUpdate(Boolean... values) {
             super.onProgressUpdate(values);
-
+            mLayoutNotfound.setVisibility(View.GONE);
+            mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
+            mRcvChat.scrollToPosition(mAdapter.getItemCount() - 1);
+        if(values[0])
+            mLoading.setVisibility(View.GONE);
         }
     }
 }

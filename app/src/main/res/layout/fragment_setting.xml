@@ -98,7 +98,7 @@
                                 android:layout_marginRight="@dimen/margin_medium"
                                 android:checked="true"
                                 app:srcCompat="@drawable/ic_keyboard_arrow_right_black_24dp"
-                                app:theme="@style/Color1SwitchStyle" />
+                                android:theme="@style/Color1SwitchStyle" />
                         </LinearLayout>
                     </com.balysv.materialripple.MaterialRippleLayout>
 
@@ -250,7 +250,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginRight="@dimen/margin_medium"
                                 android:checked="true"
-                                app:theme="@style/Color1SwitchStyle" />
+                                android:theme="@style/Color1SwitchStyle" />
                         </LinearLayout>
                     </com.balysv.materialripple.MaterialRippleLayout>
 
