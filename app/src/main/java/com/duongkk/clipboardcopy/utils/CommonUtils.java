@@ -7,12 +7,14 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.TaskStackBuilder;
 import android.telephony.TelephonyManager;
 import android.util.Base64;
+import android.util.Log;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +30,18 @@ import java.text.SimpleDateFormat;
  */
 public class CommonUtils {
     public static final String YES_ACTION ="YES_ACTION" ;
+    public static void launchApp(Context mContext, String packageName) {
+        try {
+            Intent intent = mContext.getPackageManager().getLaunchIntentForPackage(packageName);
+            intent.addCategory("android.intent.category.LAUNCHER");
+            if (intent == null) {
+                throw new PackageManager.NameNotFoundException();
+            }
+            mContext.startActivity(intent);
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.e("Launch", e.getMessage());
+        }
+    }
     public static void launchMarket(Context context,String packageApp) {
         Uri uri = Uri.parse("market://details?id=" + packageApp);
         Intent myAppLinkToMarket = new Intent(Intent.ACTION_VIEW, uri);

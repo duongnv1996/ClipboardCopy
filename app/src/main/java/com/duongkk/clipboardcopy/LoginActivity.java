@@ -2,6 +2,7 @@ package com.duongkk.clipboardcopy;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -93,10 +94,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             new MaterialDialog.Builder(LoginActivity.this)
                     .title(R.string.success)
                     .content(R.string.sent_email)
+                    .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
                     .show();
         }
     }
-
+    MaterialDialog dialogConfirmSameApp;
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -109,6 +111,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             }
             case R.id.btn_login: {
+                if( hasTheSameAppInstalled(getApplication().getPackageName() + "pro")) {
+                    if(dialogConfirmSameApp ==null){
+                        dialogConfirmSameApp =   new MaterialDialog.Builder(this)
+                                .title(R.string.error)
+                                .content(R.string.msg_exist_same_app)
+                                .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
+                                .build();
+                    }
+                    dialogConfirmSameApp.show();
+                    return;
+                }
                 CommonUtils.hideKeyBroad(this, mEdtPassword);
                 String email = mEdtEmail.getText().toString();
                 String pass = mEdtPassword.getText().toString();
@@ -117,6 +130,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.please_enter_email)
+                            .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
                             .show();
                     return;
                 }
@@ -124,6 +138,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.emaill_incorrectly)
+                            .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
+
                             .show();
                     return;
                 }
@@ -131,6 +147,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.enter_pass)
+                            .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
+
                             .show();
                     return;
                 }
@@ -138,6 +156,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     new MaterialDialog.Builder(this)
                             .title(R.string.missing_data)
                             .content(R.string.pass_incorrectly)
+                            .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
+
                             .show();
                     return;
                 }
@@ -152,6 +172,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     new MaterialDialog.Builder(LoginActivity.this)
                                             .title(R.string.auth_failt)
                                             .content(task.getException().getMessage())
+                                            .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
+
                                             .show();
                                 } else {
                                     final String id = getGreatIdString();
@@ -171,6 +193,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                                 new MaterialDialog.Builder(LoginActivity.this)
                                                         .title(R.string.auth_failt)
                                                         .content(R.string.check_connect)
+                                                        .positiveText(getString(R.string.dimiss))                             .positiveColor(Color.GRAY)
+
                                                         .show();
                                             }
                                         }
@@ -184,6 +208,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
 
 
+    }
+    private boolean hasTheSameAppInstalled(String uri) {
+        PackageManager pm = getPackageManager();
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+
+        return false;
     }
 
     private String getGreatIdString() {
@@ -199,5 +233,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onResume() {
         super.onResume();
         mProgress.setVisibility(View.GONE);
+    }
+
+    @Override
+    protected void onStop() {
+        if(dialogConfirmSameApp!=null && dialogConfirmSameApp.isShowing()) dialogConfirmSameApp.dismiss();
+        super.onStop();
     }
 }

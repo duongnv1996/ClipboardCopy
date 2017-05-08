@@ -75,6 +75,8 @@
                                                                             * Add upgrade pro version option\n* Increase performance & fix issues]]>
                                                          </string>
     <string name="dimiss">Dismiss</string>
+    <string name="msg_exist_same_app">It looks like you are using a similar Copy Copy  application. Please uninstall the old app to continue signing in</string>
+    <string name="error">The same applications exist !</string>
 
     <array name="item_noti">
         <item name="turn_off">Turn Off</item>

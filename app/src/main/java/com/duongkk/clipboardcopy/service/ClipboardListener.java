@@ -38,8 +38,12 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
     public void onCreate() {
         super.onCreate();
         clipboard = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
-        RLog.e(SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, ""));
-        mRoot = new Firebase(Constant.URL_ROOT_FINAL + SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, ""));
+        String urlID =   SharedPref.getInstance(this).getString(Constant.KEY_URL_ID, "");
+        RLog.e(urlID);
+        if(urlID.equals("")){
+            return;
+        }
+        mRoot = new Firebase(Constant.URL_ROOT_FINAL + urlID);
         mRoot.addChildEventListener(this);
         mRoot.addListenerForSingleValueEvent(this);
         notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);

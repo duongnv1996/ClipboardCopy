@@ -78,6 +78,8 @@
                                                                             * Sửa lỗi và tăng hiệu suất của ứng dụng]]>
                                                          </string>
     <string name="dimiss">Ẩn đi</string>
+    <string name="msg_exist_same_app">Dường như bạn đang sử dụng một ứng dụng Copy Copy tương tự. Hãy gỡ cài đặt ứng dụng cũ để tiếp tục đăng nhập</string>
+    <string name="error">Cảnh báo</string>
     <array name="item_long_click">
         <item name="copy">Copy văn bản</item>
         <item name="share">Chia sẻ</item>
