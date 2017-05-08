@@ -92,7 +92,7 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         try {
 
-            if (clipboard != null) {
+            if (SharedPref.getInstance(this).getBoolean(Constant.KEY_ON_SERVICE, true) && clipboard != null) {
                 Message message = dataSnapshot.getValue(Message.class);
                 contentFromServer = message.getContent();
                 clipboard.setPrimaryClip(ClipData.newPlainText("msg",message.getContent()));  // TODO: 5/5/2017 change from settext to clipdata because deprecated
