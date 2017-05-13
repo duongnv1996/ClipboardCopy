@@ -38,7 +38,6 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDb = new DatabaseHandler(getContext());
         //RLog.e(SharedPref.getInstance(getContext()).getString(Constant.KEY_URL_ID,""));
     }
 
@@ -121,6 +120,10 @@ public class FavouriteFragment extends BaseFragment implements View.OnClickListe
     }
 
     class  FavouriteAsyn extends AsyncTask<Void,Void,Void>{
+        public FavouriteAsyn() {
+            mDb = new DatabaseHandler(getContext());
+
+        }
 
         @Override
         protected Void doInBackground(Void... voids) {

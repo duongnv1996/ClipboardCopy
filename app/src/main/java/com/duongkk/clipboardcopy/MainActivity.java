@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.duongkk.clipboardcopy.databases.DatabaseHandler;
+import com.duongkk.clipboardcopy.fragments.BaseFragment;
 import com.duongkk.clipboardcopy.fragments.ChatFragment;
 import com.duongkk.clipboardcopy.fragments.FavouriteFragment;
 import com.duongkk.clipboardcopy.fragments.SettingFragment;
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-//        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(3);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -121,13 +122,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void onPageSelected(int position) {
-                if (position == 1) {
-                    Fragment fragment = ((SectionsPagerAdapter) mViewPager.getAdapter()).getFragment(position);
+                BaseFragment fragment = ((SectionsPagerAdapter) mViewPager.getAdapter()).getFragment(position);
+                if(fragment==null) return;
 
-                    if (position == 1 && fragment != null) {
-
-                        fragment.onResume();
-                    }
+                if(position==1 || position ==0){
+                    fragment.onResume();
                 }
             }
 
@@ -247,6 +246,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+    public boolean needToUpdateChatFragment;
 
     public void startSearchActivity() {
         Intent intent =new Intent(MainActivity.this,SearchActivity.class);
@@ -275,11 +275,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return obj;
         }
 
-        public Fragment getFragment(int position) {
+        public BaseFragment getFragment(int position) {
 //            String tag = mFragmentTags.get(position);
 //            if (tag == null)
 //                return null;
             if (position == 1) return new FavouriteFragment();
+            if (position == 0) return new ChatFragment();
             return null;
         }
 

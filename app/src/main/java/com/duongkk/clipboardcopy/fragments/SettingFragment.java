@@ -204,6 +204,8 @@ public class SettingFragment extends BaseFragment implements View.OnClickListene
                         Toast.makeText(getContext(), R.string.deleted,Toast.LENGTH_SHORT).show();
                     }
                 });
+                ChatFragment.mListMessages.clear();
+
                 break;
             }
             case R.id.ll_upgrade:{

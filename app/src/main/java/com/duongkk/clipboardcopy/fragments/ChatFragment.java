@@ -1,7 +1,6 @@
 package com.duongkk.clipboardcopy.fragments;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -48,13 +47,13 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     private RecyclerView mRcvChat;
     private CardView mCardMoreItem;
     private ProgressBar mLoading;
-    private MessageAdapter mAdapter;
-    private List<Message> mListMessages;
-    private Firebase mRoot;
+    public  static MessageAdapter mAdapter;
+    public  static List<Message> mListMessages;
+    private static  Firebase mRoot;
 
     private EditText mEdtMessage;
     private FloatingActionButton mBtnSend;
-    private LinearLayout mLayoutNotfound;
+    private static LinearLayout mLayoutNotfound;
 
     private String txt="";
     private ProgressDialog mProgressBar;
@@ -152,9 +151,32 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+    }
+
+    @Override
+    public void onDestroy() {
+        mRoot.removeEventListener((ChildEventListener) ChatFragment.this);
+
+        super.onDestroy();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         txt="";
+        if (mListMessages != null) {
+            //  mListMessages.clear();
+            //   mListMessages.addAll(mDb.getAllRows());
+           mAdapter.notifyDataSetChanged();
+            if (mListMessages.size() > 0) {
+                mLayoutNotfound.setVisibility(View.GONE);
+            }else{
+                mLayoutNotfound.setVisibility(View.VISIBLE);
+            }
+        }
     }
 
     @Override
@@ -169,7 +191,7 @@ public class ChatFragment extends BaseFragment implements ChildEventListener,Vie
                 mListMessages.add(msg);
                 mAdapter.notifyItemInserted(mAdapter.getItemCount() - 1);
                 mRcvChat.scrollToPosition(mAdapter.getItemCount() - 1);
-
+                mAdapter.notifyDataSetChanged();
             }
         }catch (Exception e){
             e.printStackTrace();
