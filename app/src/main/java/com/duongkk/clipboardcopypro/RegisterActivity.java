@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mAuth = FirebaseAuth.getInstance();
     }
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -127,12 +128,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                     //Firebase root = new Firebase(Constant.URL_ROOT + "users/"+mAuth.getCurrentUser().getUid()+"/");
 
 
-                                            Toast.makeText(RegisterActivity.this, R.string.success_reg, Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent();
-                                            intent.putExtra(Constant.KEY_EMAIL, email);
-                                            intent.putExtra(Constant.KEY_PASS, pass);
-                                            setResult(RESULT_OK, intent);
-                                            finish();
+                                    Toast.makeText(RegisterActivity.this, R.string.success_reg, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent();
+                                    intent.putExtra(Constant.KEY_EMAIL, email);
+                                    intent.putExtra(Constant.KEY_PASS, pass);
+                                    setResult(RESULT_OK, intent);
+                                    finish();
 
                                     //  startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
 
