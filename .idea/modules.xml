@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ClipboardCopy.iml" filepath="$PROJECT_DIR$/ClipboardCopy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClipboardCopyPro.iml" filepath="$PROJECT_DIR$/ClipboardCopyPro.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

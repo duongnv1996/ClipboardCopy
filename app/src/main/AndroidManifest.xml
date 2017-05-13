@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.duongkk.clipboardcopy">
+    package="com.duongkk.clipboardcopypro">
 
     <uses-permission android:name="android.permission.GET_CLIPS" />
     <uses-permission android:name="android.permission.READ_CLIPS" />
@@ -52,11 +52,7 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ForgotPasswordActivity"
@@ -67,7 +63,16 @@
         <activity
             android:name=".SearchActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".AdsActivity"></activity>
+        <activity android:name=".AdsActivity" />
+        <activity
+            android:name=".Splash"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/FullscreenTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

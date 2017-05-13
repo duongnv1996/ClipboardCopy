@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Copy Copy</string>
+    <string name="app_name">Copy Copy Pro</string>
     <string name="action_settings">Cài đặt</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -36,7 +36,7 @@
 
     <string name="code_user_setting" format="false">Mã: %s</string>
     <string name="please_enter_your_code_to_the_computer_to_complete_the_connection">Bạn vui lòng nhập mã số trên vào ứng dụng trên máy tính để hoàn thành kết nối!</string>
-    <string name="active">Copy Copy đang được bật</string>
+    <string name="active">Copy Copy Pro đang được bật</string>
     <string name="connect_to_computer">Kết nối với máy tính</string>
     <string name="how_to_connect_to_computer">Hướng dẫn kết nối máy tính</string>
     <string name="night_mode_scheule">Chế độ ngày đêm</string>
@@ -44,7 +44,7 @@
     <string name="search_for_any_message">Tìm kiếm bất kỳ tin nhắn nào</string>
 
     <string name="not_a_member_get_registered_now">Chưa có tài khoản. Đăng ký ngay!</string>
-    <string name="rate_copy_copy_on_play_store">Đánh giá Copy Copy</string>
+    <string name="rate_copy_copy_on_play_store">Đánh giá Copy Copy Pro</string>
     <string name="your_5_star_rating_and_google_1_are_appreciated">Nếu thích ứng dụng hãy đánh giá 5 sao nhé</string>
     <string name="contact_developer">Liên hệ với quản trị viên</string>
     <string name="problem_question_drop_me_an_email_at_duongkk_dev_gmail_com">Có bất kỳ góp ý gì xin gửi email tới duongkk.dev@gmail.com</string>
@@ -53,10 +53,10 @@
     <string name="log_out">Đăng xuất</string>
     <string name="delete_all_text_from_history">Xóa tất cả các tin nhắn trước đây</string>
     <string name="delete_history">Xóa lịch sử</string>
-    <string name="show_status_bar_icon_when_copy_copy_is_active">Hiện thông báo khi Copy Copy hoạt động trên thanh trạng thái</string>
+    <string name="show_status_bar_icon_when_copy_copy_is_active">Hiện thông báo khi Copy Copy Pro hoạt động trên thanh trạng thái</string>
     <string name="notify_when_active">Hiện thông báo khi hoạt động</string>
-    <string name="copy_copy_is_active">Copy Copy đang hoạt động</string>
-    <string name="copy_copy_is_off">Copy Copy đã tắt</string>
+    <string name="copy_copy_is_active">Copy Copy Pro đang hoạt động</string>
+    <string name="copy_copy_is_off">Copy Copy Pro đã tắt</string>
     <string name="things_you_share_will_appear_here">Những gì bạn chia sẻ sẽ được hiển thị tại đây</string>
     <string name="nothing_shared">Hộp thư rỗng</string>
     <string name="off">TẮT DỊCH VỤ</string>
@@ -64,7 +64,7 @@
     <string name="success_reg">Đăng ký thành công. Vui lòng đăng nhập để tiếp tục sử dụng!</string>
     <string name="right">Ứng dụng chưa được cấp quyền truy cập. Vui lòng cấp quyền trong cài đặt ứng dụng và thử lại</string>
     <string name="check_connect">Vui lòng kiểm tra kết nối đường truyền và thử lại sau!</string>
-    <string name="tip"> *Bạn có thể download phần mềm Copy Copy cho hệ điều hành khác tại : \n http://copycopy.16mb.com</string>
+    <string name="tip"> *Bạn có thể download phần mềm Copy Copy Pro cho hệ điều hành khác tại : \n http://copycopy.16mb.com</string>
     <string name="more_item">↓ Xuống cuối</string>
     <string name="notify_when_copied">Thông báo khi sao chép thành công</string>
     <string name="enabled_notification_copying">Đã bật thông báo khi sao chép</string>
@@ -78,6 +78,8 @@
                                                                             * Sửa lỗi và tăng hiệu suất của ứng dụng]]>
                                                          </string>
     <string name="dimiss">Ẩn đi</string>
+    <string name="msg_exist_same_app">Dường như bạn đang sử dụng một ứng dụng Copy Copy tương tự. Hãy gỡ cài đặt ứng dụng cũ để tiếp tục đăng nhập</string>
+    <string name="error">Cảnh báo</string>
     <array name="item_long_click">
         <item name="copy">Copy văn bản</item>
         <item name="share">Chia sẻ</item>

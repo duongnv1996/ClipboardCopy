@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Copy Copy</string>
+    <string name="app_name">Copy Copy Pro</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -36,14 +36,14 @@
 
     <string name="code_user_setting" format="false">Code: %s</string>
     <string name="please_enter_your_code_to_the_computer_to_complete_the_connection">Please enter your code to the computer to complete the connection.</string>
-    <string name="active">Copy Copy is Active</string>
+    <string name="active">Copy Copy Pro is Active</string>
     <string name="connect_to_computer">Connect to Computer</string>
     <string name="how_to_connect_to_computer">How to Connect to Computer</string>
     <string name="night_mode_scheule">Night mode scheule</string>
     <string name="auto">Auto</string>
     <string name="search_for_any_message">Search for any message</string>
     <string name="not_a_member_get_registered_now">Not a member? Get registered now!</string>
-    <string name="rate_copy_copy_on_play_store">Rate Copy Copy on Play Store</string>
+    <string name="rate_copy_copy_on_play_store">Rate Copy Copy Pro on Play Store</string>
     <string name="your_5_star_rating_and_google_1_are_appreciated">Your 5-star rating and Google +1 are appreciated.</string>
     <string name="contact_developer">Contact developer</string>
     <string name="problem_question_drop_me_an_email_at_duongkk_dev_gmail_com">Problem? Question? Drop me an email at duongkk.dev@gmail.com</string>
@@ -52,12 +52,12 @@
     <string name="log_out">Log out</string>
     <string name="delete_all_text_from_history">Delete all text from history</string>
     <string name="delete_history">Delete history</string>
-    <string name="show_status_bar_icon_when_copy_copy_is_active">Show status bar icon when Copy Copy is active</string>
+    <string name="show_status_bar_icon_when_copy_copy_is_active">Show status bar icon when Copy Copy Pro Pro is active</string>
     <string name="notify_when_active">Notify when active</string>
-    <string name="copy_copy_is_active">Copy Copy is active</string>
+    <string name="copy_copy_is_active">Copy Copy Pro is active</string>
     <string name="things_you_share_will_appear_here">Things you share will appear here</string>
     <string name="nothing_shared">Nothing shared</string>
-    <string name="copy_copy_is_off">Copy Copy is off</string>
+    <string name="copy_copy_is_off">Copy Copy Pro is off</string>
     <string name="off">TURN OFF</string>
     <string name="deleted">Deleted!</string>
     <string name="success_reg">Register successfull. Please login to use service!</string>
@@ -75,7 +75,8 @@
                                                                             * Add upgrade pro version option\n* Increase performance & fix issues]]>
                                                          </string>
     <string name="dimiss">Dismiss</string>
-
+    <string name="msg_exist_same_app">It looks like you are using a similar Copy Copy  application. Please uninstall the old app to continue signing in</string>
+    <string name="error">The same applications exist !</string>
     <array name="item_noti">
         <item name="turn_off">Turn Off</item>
         <item name="alert">Show alert message</item>
@@ -105,4 +106,8 @@
         <item name="dark">Always Dark</item>
         <item name="follow_system">Follows System</item>
     </array>
+
+    <string name="title_activity_splash">Splash</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

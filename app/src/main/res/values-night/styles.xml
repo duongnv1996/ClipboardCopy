@@ -3,10 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/white</item>
-        <item name="colorControlNormal">@color/white</item>
+        <item name="colorPrimary">#3D4052 </item>
+        <item name="colorPrimaryDark">#3D4052 </item>
+        <item name="colorControlNormal">#757A91 </item>
         <item name="colorControlActivated">@color/white</item>
         <item name="colorControlHighlight">@color/white</item>
     </style>

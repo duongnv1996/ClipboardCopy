@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.duongkk.clipboardcopy.fragments.SettingFragment">
+    tools:context="com.duongkk.clipboardcopypro.fragments.SettingFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -344,14 +344,15 @@
                     </com.balysv.materialripple.MaterialRippleLayout>
 
 
-                    <!--Remove ads-->
+                    <!--theme-->
+
                     <com.balysv.materialripple.MaterialRippleLayout
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <LinearLayout
-                            android:id="@+id/ll_upgrade"
+                            android:id="@+id/ll_theme"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/size_ll_setting"
                             android:background="?selectableItemBackground"
@@ -363,7 +364,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:layout_margin="@dimen/margin_icon_setting"
-                                app:srcCompat="@drawable/ic_security_black_24dp" />
+                                app:srcCompat="@drawable/ic_brightness_2_black_24dp" />
                             <!--Content-->
 
                             <LinearLayout
@@ -389,13 +390,13 @@
                                         style="@style/TextMediumTitle"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/upgrade_pro_version" />
+                                        android:text="@string/night_mode_scheule" />
 
-                                    <TextView
-                                        style="@style/TextSmallContent"
+                                    <android.support.v7.widget.AppCompatSpinner
+                                        android:id="@+id/sp_theme"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/remove_ads_more_theme_style" />
+                                        android:backgroundTint="@color/secondary_text" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -459,59 +460,6 @@
                         </LinearLayout>
                     </com.balysv.materialripple.MaterialRippleLayout>
 
-                    <!--theme-->
-                    <LinearLayout
-                        android:id="@+id/ll_theme"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_ll_setting"
-                        android:background="?selectableItemBackground"
-                        android:gravity="top"
-                        android:onClick="onClick"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="@dimen/margin_icon_setting"
-                            app:srcCompat="@drawable/ic_brightness_2_black_24dp" />
-                        <!--Content-->
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:gravity="center_vertical"
-                            android:orientation="vertical">
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="0.3dp"
-                                android:layout_marginBottom="@dimen/margin_small"
-                                android:background="@color/divider" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    style="@style/TextMediumTitle"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/night_mode_scheule" />
-
-                                <TextView
-                                    android:id="@+id/tv_theme"
-                                    style="@style/TextSmallContent"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
 
                     <com.balysv.materialripple.MaterialRippleLayout
 
@@ -754,8 +702,7 @@
                                     <TextView
                                         style="@style/TextSmallContent"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="@dimen/margin_small"
+                                        android:layout_height="match_parent"
                                         android:text="@string/problem_question_drop_me_an_email_at_duongkk_dev_gmail_com" />
                                 </LinearLayout>
 
@@ -777,6 +724,7 @@
                             android:layout_height="@dimen/size_ll_setting"
                             android:background="?selectableItemBackground"
                             android:gravity="top"
+                            android:layout_marginBottom="@dimen/margin_small"
                             android:onClick="onClick"
                             android:orientation="horizontal">
 
