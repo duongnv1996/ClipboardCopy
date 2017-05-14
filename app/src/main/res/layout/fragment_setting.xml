@@ -731,6 +731,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
+
                                 android:orientation="vertical">
 
                                 <View
@@ -754,8 +755,8 @@
                                     <TextView
                                         style="@style/TextSmallContent"
                                         android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginBottom="@dimen/margin_small"
+                                        android:layout_height="match_parent"
+                                        android:layout_marginBottom="3dp"
                                         android:text="@string/problem_question_drop_me_an_email_at_duongkk_dev_gmail_com" />
                                 </LinearLayout>
 

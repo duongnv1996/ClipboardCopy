@@ -118,7 +118,11 @@ public class ClipboardListener extends Service implements ChildEventListener, Cl
         int option = SharedPref.getInstance(getApplicationContext()).getInt(Constant.KEY_NOTIFY_WHEN_COPIED,0);
         switch (option){
             case 1:{
-                Toast.makeText(getApplicationContext(),String.format(getString(R.string.notification_copied),message.getContent()),Toast.LENGTH_SHORT).show();
+                String msg = message.getContent();
+                if(msg.length()>20){
+                    msg=msg.substring(0,20)+"...";
+                }
+                Toast.makeText(getApplicationContext(),String.format(getString(R.string.notification_copied),msg),Toast.LENGTH_SHORT).show();
                 break;
             }
             case 2:{
