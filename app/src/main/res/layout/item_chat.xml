@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_medium"
         android:layout_marginRight="@dimen/margin_medium"
-        app:cmv_backgroundColor="@color/colorPrimary"
+        app:cmv_backgroundColor="@color/colorMyMsg"
         app:cmv_arrowPosition="right"
         app:cmv_showArrow="true"
         android:layout_marginLeft="64dp"

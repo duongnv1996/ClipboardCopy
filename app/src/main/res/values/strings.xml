@@ -68,10 +68,10 @@
     <string name="notify_when_copied">Notify when copying</string>
     <string name="enabled_notification_copying">Enabled notification when copying text</string>
     <string name="notification_copied">Copied message : %s</string>
-    <string name="remove_ads_more_theme_style"><![CDATA[Remove Ads & more themes style]]></string>
+    <string name="remove_ads_more_theme_style"><![CDATA[Remove Ads]]></string>
     <string name="upgrade_pro_version">Upgrade pro version</string>
     <string name="title_update">New Update</string>
-    <string name="msg_update"><![CDATA[ * Add notification when copying text option
+    <string name="msg_update"><![CDATA[ * Add notification when copying text option\n
                                                                             * Add upgrade pro version option\n* Increase performance & fix issues]]>
                                                          </string>
     <string name="dimiss">Dismiss</string>
@@ -110,4 +110,5 @@
     <string name="title_activity_splash">Splash</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="permission">Permission Alert</string>
 </resources>
